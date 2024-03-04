@@ -16,10 +16,7 @@ public class Volunteer {
     @Column(name = "chat_id")
     private int chatId;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_volunteer",
-            joinColumns = @JoinColumn(name = "volunteer_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<PetsUser> petsUsers;
+    @OneToOne
+    @JoinColumn(name = "pets_user_id", referencedColumnName = "id")
+    private PetsUser petsUser;
 }

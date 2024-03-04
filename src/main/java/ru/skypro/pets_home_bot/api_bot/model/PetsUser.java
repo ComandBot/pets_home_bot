@@ -17,10 +17,6 @@ public class PetsUser {
     @Column(name = "chat_id")
     private int chatId;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_volunteer",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "volunteer_id"))
-    private List<Volunteer> volunteers;
+    @OneToOne(mappedBy = "petsUser")
+    private Volunteer volunteer;
 }
