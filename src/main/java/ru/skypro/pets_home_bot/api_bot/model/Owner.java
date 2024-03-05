@@ -8,19 +8,17 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "shelter_pets")
-public class ShelterPets {
+@Table(name = "owners")
+public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "pet_user_id")
-    private PetsUser petsUser;
+    @Column(name = "chat_id_pet_user")
+    private int chatIdPetUser;
 
-    @ManyToOne
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
+    @Column(name = "pet_id")
+    private int petId;
 
     @CreationTimestamp
     private LocalDateTime dateDelivery;

@@ -13,6 +13,7 @@ public class Pet {
     private int id;
 
     @Column(name = "pet_type")
+    @Enumerated(EnumType.STRING)
     private PetsTypes petsTypes;
 
     @Column(name = "pet_name")
