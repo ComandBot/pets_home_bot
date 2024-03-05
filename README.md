@@ -14,13 +14,13 @@
 
 Технологии:
 
-*Maven
-*SpringBoot
-*PostgreSQL
-*Liquibase
-*REST API
-*SwaggerUI
-*Pengrad Java Telegram bot API
+  Maven
+  SpringBoot
+  PostgreSQL
+  Liquibase
+  REST API
+  SwaggerUI
+  Pengrad Java Telegram bot API
 
 Язык программирования: проект разработан с использованием языка программирования JAVA.
 
