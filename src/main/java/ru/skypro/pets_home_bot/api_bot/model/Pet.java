@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import ru.skypro.pets_home_bot.api_bot.enums.PetsTypes;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "pets")
@@ -18,4 +20,7 @@ public class Pet {
 
     @Column(name = "pet_name")
     private String name;
+
+    @OneToOne(mappedBy = "petUserId.pet")
+    private Owner owner;
 }

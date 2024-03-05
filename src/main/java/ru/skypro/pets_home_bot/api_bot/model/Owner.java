@@ -10,15 +10,9 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "owners")
 public class Owner {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
-    @Column(name = "chat_id_pet_user")
-    private int chatIdPetUser;
-
-    @Column(name = "pet_id")
-    private int petId;
+    @EmbeddedId
+    PetUserId petUserId;
 
     @CreationTimestamp
     private LocalDateTime dateDelivery;
