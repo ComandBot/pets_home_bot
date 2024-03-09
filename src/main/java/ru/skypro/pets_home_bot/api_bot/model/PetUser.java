@@ -17,8 +17,14 @@ public class PetUser {
     @Column(name = "chat_id")
     private int chatId;
 
-    @OneToMany(mappedBy = "petUserId.petUser", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "ownerId.petUser", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private List<Owner> owner;
+    private List<Owner> owners;
+
+    @OneToOne(mappedBy = "workUserId")
+    private Volunteer volunteer;
+
+    @OneToMany(mappedBy = "petUser")
+    private List<Contact> contacts;
 
 }

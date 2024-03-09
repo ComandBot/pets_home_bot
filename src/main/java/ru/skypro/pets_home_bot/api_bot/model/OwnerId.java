@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
+
 @Data
 @Embeddable
-public class PetUserId implements Serializable {
+public class OwnerId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "pet_user_id")
     private PetUser petUser;
 
-    @ManyToOne
-    @JoinColumn(name = "pet_id", unique = true)
+    @OneToOne
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 }

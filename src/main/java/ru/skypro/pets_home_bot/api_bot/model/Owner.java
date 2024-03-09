@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -12,8 +13,11 @@ import java.time.LocalDateTime;
 public class Owner {
 
     @EmbeddedId
-    PetUserId petUserId;
+    OwnerId ownerId;
 
     @CreationTimestamp
     private LocalDateTime dateDelivery;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Report> reports;
 }

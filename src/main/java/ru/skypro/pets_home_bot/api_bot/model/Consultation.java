@@ -5,20 +5,17 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "pets")
-public class Pet {
+@Table(name = "consultations")
+public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "pet_name")
-    private String name;
+    @Column(name = "type_consultation")
+    private String typeConsultation;
 
-    @OneToOne(mappedBy = "ownerId.pet")
-    private Owner owner;
-
-    @OneToOne(mappedBy = "pet")
-    private AvatarPet avatarPet;
+    @Column(columnDefinition = "TEXT")
+    private String definition;
 
     @ManyToOne
     @JoinColumn(name = "shelter_id")
