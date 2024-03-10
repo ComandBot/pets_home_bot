@@ -17,5 +17,4 @@ public class Volunteer {
     @OneToOne
     @JoinColumn(name = "work_user_id")
     private PetUser workUserId;
-
 }
