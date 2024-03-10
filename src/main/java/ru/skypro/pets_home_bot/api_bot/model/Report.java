@@ -2,6 +2,9 @@ package ru.skypro.pets_home_bot.api_bot.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -25,6 +28,10 @@ public class Report {
 
     @Column(name = "is_viewed")
     private boolean isViewed;
+
+    @Column(name = "date_report")
+    @CreationTimestamp
+    private LocalDateTime dateReport;
 
     @ManyToOne
     @JoinColumns({

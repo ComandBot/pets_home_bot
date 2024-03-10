@@ -3,7 +3,6 @@ package ru.skypro.pets_home_bot.api_bot.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import ru.skypro.pets_home_bot.api_bot.enums.PetsTypes;
-
 import java.util.List;
 
 @Entity
@@ -20,20 +19,8 @@ public class Shelter {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(columnDefinition = "TEXT")
-    private String scheduleWork;
-
-    @Column(columnDefinition = "TEXT")
-    private String address;
-
     @Lob
     private byte[] scheme;
-
-    @Column(columnDefinition = "TEXT")
-    private String contactData;
-
-    @Column(columnDefinition = "TEXT")
-    private String safety;
 
     @Column(name = "pet_type")
     @Enumerated(EnumType.STRING)

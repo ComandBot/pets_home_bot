@@ -15,6 +15,10 @@ public class Owner {
     @EmbeddedId
     OwnerId ownerId;
 
+    @Column(name = "test_period")
+    private int testPeriod;
+
+    @Column(name = "date_delivery")
     @CreationTimestamp
     private LocalDateTime dateDelivery;
 
