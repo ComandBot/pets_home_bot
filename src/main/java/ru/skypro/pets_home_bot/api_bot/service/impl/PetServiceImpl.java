@@ -1,13 +1,14 @@
-package ru.skypro.pets_home_bot.api_bot.service;
+package ru.skypro.pets_home_bot.api_bot.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
 import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
+import ru.skypro.pets_home_bot.api_bot.service.PetService;
 
 import java.util.Collection;
 
 @Service
-public class PetServiceImpl implements PetService{
+public class PetServiceImpl implements PetService {
 private final PetRepository petRepository;
 
     public PetServiceImpl(PetRepository petRepository) {
