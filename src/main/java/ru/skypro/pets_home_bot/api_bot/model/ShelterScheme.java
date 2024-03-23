@@ -5,16 +5,16 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "volunteers")
-public class Volunteer {
+@Table(name = "schemes")
+public class ShelterScheme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "chat_id")
-    private long chatId;
+    @Lob
+    private byte[] scheme;
 
     @OneToOne
-    @JoinColumn(name = "work_user_id")
-    private PetUser workUserId;
+    @JoinColumn(name = "shelter_id")
+    private Shelter shelter;
 }

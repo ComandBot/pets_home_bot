@@ -19,9 +19,6 @@ public class Shelter {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Lob
-    private byte[] scheme;
-
     @Column(name = "pet_type")
     @Enumerated(EnumType.STRING)
     private PetsTypes petsTypes;
@@ -35,7 +32,6 @@ public class Shelter {
     @OneToMany(mappedBy = "shelter")
     private List<ShelterInfo> shelterInfos;
 
-
-
-
+    @Column(name = "link")
+    private String link;
 }

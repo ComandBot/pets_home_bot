@@ -35,4 +35,6 @@ public interface VolunteerService {
      * либо возвращает null если волонтер не найден
      */
     Volunteer removeWorkPetUser(int volunteerId);
+
+    Volunteer findByChatIdVolunteer(long chatId);
 }
