@@ -5,19 +5,16 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "shelter_info")
-public class ShelterInfo {
+@Table(name = "schemes")
+public class ShelterScheme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "type_info")
-    private String typeInfo;
+    @Lob
+    private byte[] scheme;
 
-    @Column(columnDefinition = "TEXT")
-    private String definition;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "shelter_id")
     private Shelter shelter;
 }
