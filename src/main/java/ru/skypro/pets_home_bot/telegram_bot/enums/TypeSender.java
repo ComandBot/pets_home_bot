@@ -5,6 +5,7 @@ public enum TypeSender {
     SHELTER_SELECT_CATS("/shelters_cats", "выберите приют для кошек"),
     SHELTER_SELECT_DOGS("/shelters_dogs", "выберите приют для собак"),
     SHELTER("/shelter"),
+    SHELTER_INFO("/shelter-info"),
     END("/end", "desc");
 
     private final String link;

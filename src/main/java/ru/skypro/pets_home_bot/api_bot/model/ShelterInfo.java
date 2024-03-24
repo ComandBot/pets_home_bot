@@ -17,6 +17,9 @@ public class ShelterInfo {
     @Column(columnDefinition = "TEXT")
     private String definition;
 
+    @Lob
+    private byte[] scheme;
+
     @ManyToOne
     @JoinColumn(name = "shelter_id")
     private Shelter shelter;
