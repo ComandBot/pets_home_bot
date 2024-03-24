@@ -4,10 +4,10 @@ import ru.skypro.pets_home_bot.api_bot.model.Shelter;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
 import ru.skypro.pets_home_bot.telegram_bot.enums.TypeSender;
 
-public class SelectedShelterMessage implements ExecuteMessage {
+public class SelectedShelterMessageExecute implements ExecuteMessage {
     private final ShelterService shelterService;
 
-    public SelectedShelterMessage(ShelterService shelterService) {
+    public SelectedShelterMessageExecute(ShelterService shelterService) {
         this.shelterService = shelterService;
     }
 

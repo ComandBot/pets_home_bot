@@ -1,10 +1,11 @@
-package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
+package ru.skypro.pets_home_bot.telegram_bot.logic.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 import ru.skypro.pets_home_bot.api_bot.service.VolunteerService;
 import ru.skypro.pets_home_bot.telegram_bot.enums.TypeSender;
+import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
 import ru.skypro.pets_home_bot.telegram_bot.logic.service.SenderMessageService;
 
 import java.util.List;
