@@ -5,19 +5,16 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "pets_avatars")
-public class AvatarPet {
+@Table(name = "schemes")
+public class ShelterScheme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
     @Lob
-    private byte[] data;
+    private byte[] scheme;
 
     @OneToOne
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
+    @JoinColumn(name = "shelter_id")
+    private Shelter shelter;
 }

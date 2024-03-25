@@ -12,10 +12,9 @@ public class Volunteer {
     private int id;
 
     @Column(name = "chat_id")
-    private int chatId;
+    private long chatId;
 
     @OneToOne
     @JoinColumn(name = "work_user_id")
     private PetUser workUserId;
-
 }
