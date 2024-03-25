@@ -2,7 +2,7 @@ package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
 
 import ru.skypro.pets_home_bot.api_bot.model.Shelter;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
-import ru.skypro.pets_home_bot.telegram_bot.enums.TypeSender;
+import ru.skypro.pets_home_bot.telegram_bot.logic.enums.TypeSender;
 
 public class SelectedShelterMessageExecute implements ExecuteMessage {
     private final ShelterService shelterService;
