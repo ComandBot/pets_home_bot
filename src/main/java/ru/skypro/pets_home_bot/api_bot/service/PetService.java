@@ -17,7 +17,7 @@ public interface PetService {
      * @param pet
      * @return
      */
-    Pet getPet(Integer pet);
+    Pet getPet(int pet);
 
     /**
      * метод для обновления данных о питомце

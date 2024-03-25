@@ -15,7 +15,7 @@ public class PetUser {
     private int id;
 
     @Column(name = "chat_id")
-    private int chatId;
+    private long chatId;
 
     @OneToMany(mappedBy = "ownerId.petUser", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -26,5 +26,4 @@ public class PetUser {
 
     @OneToMany(mappedBy = "petUser")
     private List<Contact> contacts;
-
 }

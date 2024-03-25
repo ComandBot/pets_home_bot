@@ -23,5 +23,5 @@ public interface PetUserService {
      * @param chatIdPetUser - chatId усыновителя
      * @return - возвращается
      */
-    PetUser findByChatIdPetUser(int chatIdPetUser);
+    PetUser findByChatIdPetUser(long chatIdPetUser);
 }

@@ -22,7 +22,7 @@ private final PetRepository petRepository;
     }
 
     @Override
-    public Pet getPet(Integer id) {
+    public Pet getPet(int id) {
         return petRepository.findById(id).get();
     }
 
