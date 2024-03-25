@@ -1,6 +1,6 @@
 package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
 
-import ru.skypro.pets_home_bot.telegram_bot.enums.TypeSender;
+import ru.skypro.pets_home_bot.telegram_bot.logic.enums.TypeSender;
 
 public class ShelterListCatsSelectExecute implements ExecuteMessage{
     @Override

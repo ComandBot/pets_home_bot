@@ -1,19 +1,18 @@
 package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import ru.skypro.pets_home_bot.telegram_bot.logic.constants.TemplateAnswer;
 import ru.skypro.pets_home_bot.telegram_bot.logic.enums.TypeSender;
 @Component
-@Slf4j
-public class ShelterListDogsSelectExecute implements ExecuteMessage {
-
+public class AuthorizationExecute implements ExecuteMessage {
     @Override
     public String execute(String link) {
-        return "Выводим список приютов для собак";
+        return String.format(TemplateAnswer.AUTHORIZATION_MENU,
+                TypeSender.PET_USER, TypeSender.VOLUNTEER);
     }
 
     @Override
     public TypeSender getTypeSender() {
-        return TypeSender.SHELTER_SELECT_DOGS;
+        return TypeSender.NO_BEAN;
     }
 }
