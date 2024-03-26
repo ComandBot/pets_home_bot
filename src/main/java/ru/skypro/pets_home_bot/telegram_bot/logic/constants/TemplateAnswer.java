@@ -11,4 +11,7 @@ public class TemplateAnswer {
             %s
             %s
             """;
+
+    public static final String SHELTERS_LIST_CATS = "Список приютов для кошек:\n";
+    public static final String SHELTERS_LIST_DOGS = "Список приютов для собак:\n";
 }
