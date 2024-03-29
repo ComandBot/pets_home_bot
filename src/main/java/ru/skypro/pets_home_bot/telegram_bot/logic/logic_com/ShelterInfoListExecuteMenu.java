@@ -20,6 +20,7 @@ public class ShelterInfoListExecuteMenu implements ExecuteMessage {
             Инфрмация о приюте %s:
             %s - получить схему подъезда
             %s - дать номер телефона
+            %s - позвать волонтера
             Списки доступной информации:
             """;
 
@@ -41,7 +42,7 @@ public class ShelterInfoListExecuteMenu implements ExecuteMessage {
         String result = menu + shelterInfos.stream()
                 .map(e -> parseUtil.tempParse(SHELTER_INFO_ID, e.getId()) + " - " + e.getTypeInfo())
                 .collect(Collectors.joining("\n"));
-        return String.format(result, shelter.getNameShelter(), SHELTER_SCHEME_NUM, CONTACT);
+        return String.format(result, shelter.getNameShelter(), SHELTER_SCHEME_NUM, CONTACT, HELP);
     }
 
     @Override

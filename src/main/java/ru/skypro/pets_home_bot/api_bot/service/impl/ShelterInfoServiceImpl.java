@@ -5,6 +5,8 @@ import ru.skypro.pets_home_bot.api_bot.model.ShelterInfo;
 import ru.skypro.pets_home_bot.api_bot.repository.ShelterInfoRepository;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterInfoService;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ShelterInfoServiceImpl implements ShelterInfoService {
 
@@ -17,5 +19,10 @@ public class ShelterInfoServiceImpl implements ShelterInfoService {
     @Override
     public List<ShelterInfo> findAllByShelterId(int id) {
         return shelterInfoRepository.findAllByShelterId(id);
+    }
+
+    @Override
+    public Optional<ShelterInfo> findById(int id) {
+        return shelterInfoRepository.findById(id);
     }
 }

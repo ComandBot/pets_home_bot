@@ -1,0 +1,38 @@
+package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
+
+import com.pengrad.telegrambot.model.Update;
+import org.springframework.stereotype.Component;
+import ru.skypro.pets_home_bot.api_bot.model.ShelterInfo;
+import ru.skypro.pets_home_bot.api_bot.service.ShelterInfoService;
+import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
+
+import java.util.Optional;
+
+import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.SHELTER_INFO_ID_NUM;
+
+@Component
+public class ShelterInfoDescriptionExecute implements ExecuteMessage {
+
+    private final ShelterInfoService shelterInfoService;
+    private final ParseUtil parseUtil;
+
+    public ShelterInfoDescriptionExecute(ShelterInfoService shelterInfoService, ParseUtil parseUtil) {
+        this.shelterInfoService = shelterInfoService;
+        this.parseUtil = parseUtil;
+    }
+
+    @Override
+    public String execute(Update update) {
+        int id = parseUtil.getIdLink(update.message().text());
+        Optional<ShelterInfo> shelterInfo = shelterInfoService.findById(id);
+        if (shelterInfo.isEmpty()) {
+            return "Информация отсутствует";
+        }
+        return shelterInfo.get().getDefinition();
+    }
+
+    @Override
+    public String getLink() {
+        return SHELTER_INFO_ID_NUM;
+    }
+}
