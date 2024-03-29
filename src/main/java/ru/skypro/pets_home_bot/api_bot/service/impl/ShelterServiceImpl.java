@@ -7,6 +7,7 @@ import ru.skypro.pets_home_bot.api_bot.repository.ShelterRepository;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShelterServiceImpl implements ShelterService {
@@ -29,5 +30,10 @@ public class ShelterServiceImpl implements ShelterService {
     @Override
     public List<Shelter> findByDogShelters() {
         return shelterRepository.findSheltersByPetsTypes(PetsTypes.DOG);
+    }
+
+    @Override
+    public Optional<Shelter> findByShelterId(int id) {
+        return shelterRepository.findById(id);
     }
 }
