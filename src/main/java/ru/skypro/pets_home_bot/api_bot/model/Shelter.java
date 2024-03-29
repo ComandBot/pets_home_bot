@@ -31,7 +31,4 @@ public class Shelter {
 
     @OneToMany(mappedBy = "shelter")
     private List<ShelterInfo> shelterInfos;
-
-    @Column(name = "link")
-    private String link;
 }

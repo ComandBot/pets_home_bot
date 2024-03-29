@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ShelterService {
-    Shelter findByShelterLink(String link);
-
     List<Shelter> findByCatShelters();
 
     List<Shelter> findByDogShelters();

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ShelterRepository extends JpaRepository<Shelter, Integer> {
-    Shelter findByLink(String link);
     List<Shelter> findSheltersByPetsTypes(PetsTypes petsTypes);
 
     Optional<Shelter> findById(int id);

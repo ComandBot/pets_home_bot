@@ -18,11 +18,6 @@ public class ShelterServiceImpl implements ShelterService {
     }
 
     @Override
-    public Shelter findByShelterLink(String link) {
-        return shelterRepository.findByLink(link);
-    }
-
-    @Override
     public List<Shelter> findByCatShelters() {
         return shelterRepository.findSheltersByPetsTypes(PetsTypes.CAT);
     }
