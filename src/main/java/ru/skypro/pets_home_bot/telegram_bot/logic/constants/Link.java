@@ -34,7 +34,9 @@ public class Link {
     public static final String CONTACT = "/contact";
     public static final String SHELTER_INFO_ID_NUM = "/shelterinfoid_num";
     public static final String SHELTER_SCHEME_NUM = "/shelterscheme_num";
-
+    /**
+     * /shelterscheme_num - получить схему подъезда
+     */
 
 
 }

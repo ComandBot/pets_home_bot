@@ -46,7 +46,8 @@ public class ShelterInfoListExecuteMenu implements ExecuteMessage {
                 .map(e -> parseUtil.tempParse(SHELTER_INFO_ID_NUM, e.getId()) + " - " + e.getTypeInfo())
                 .collect(Collectors.joining("\n"));
         return new SendMessage(chatId,
-                String.format(result, shelter.getNameShelter(), SHELTER_SCHEME_NUM, CONTACT, HELP));
+                String.format(result, shelter.getNameShelter(),
+                        parseUtil.tempParse(SHELTER_SCHEME_NUM, shelter.getId()), CONTACT, HELP));
     }
 
     @Override
