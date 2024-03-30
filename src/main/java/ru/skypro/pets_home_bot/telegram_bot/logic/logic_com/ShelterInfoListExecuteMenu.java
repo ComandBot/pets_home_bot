@@ -1,6 +1,8 @@
 package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
 
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.SendMessage;
 import jdk.jfr.Category;
 import org.springframework.stereotype.Component;
 import ru.skypro.pets_home_bot.api_bot.model.Shelter;
@@ -35,14 +37,16 @@ public class ShelterInfoListExecuteMenu implements ExecuteMessage {
     }
 
     @Override
-    public String execute(Update update) {
+    public BaseRequest execute(Update update) {
         int id = parseUtil.getIdLink(update.message().text());
         Shelter shelter = shelterService.findByShelterId(id).get();
+        long chatId = update.message().chat().id();
         List<ShelterInfo>  shelterInfos = shelterInfoService.findAllByShelterId(id);
         String result = menu + shelterInfos.stream()
-                .map(e -> parseUtil.tempParse(SHELTER_INFO_ID, e.getId()) + " - " + e.getTypeInfo())
+                .map(e -> parseUtil.tempParse(SHELTER_INFO_ID_NUM, e.getId()) + " - " + e.getTypeInfo())
                 .collect(Collectors.joining("\n"));
-        return String.format(result, shelter.getNameShelter(), SHELTER_SCHEME_NUM, CONTACT, HELP);
+        return new SendMessage(chatId,
+                String.format(result, shelter.getNameShelter(), SHELTER_SCHEME_NUM, CONTACT, HELP));
     }
 
     @Override

@@ -2,6 +2,8 @@ package ru.skypro.pets_home_bot.telegram_bot.logic.service.impl;
 
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.SendMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
@@ -28,11 +30,12 @@ public class SenderMessageServiceImpl implements SenderMessageService {
     }
 
     @Override
-    public String answer(Update update) {
+    public BaseRequest answer(Update update) {
         validateUpdate(update);
+        long chatId = update.message().chat().id();
         String text = parseUtil.parseLink(update.message().text());
         if (!messageMap.containsKey(text)) {
-            return "Команда не правильная";
+            return new SendMessage(chatId, "Команда не правильная");
         }
         return messageMap.get(text).execute(update);
     }

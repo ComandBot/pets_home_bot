@@ -4,7 +4,9 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.request.SendPhoto;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +35,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     public int process(List<Update> updates) {
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
-            String answer = messageService.answer(update);
-            long chatId = update.message().chat().id();
-            SendMessage sendMessage = new SendMessage(chatId, answer);
-            telegramBot.execute(sendMessage);
+            BaseRequest answer = messageService.answer(update);
+            telegramBot.execute(answer);
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }

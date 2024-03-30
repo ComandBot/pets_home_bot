@@ -1,6 +1,8 @@
 package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
 
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Component;
 import ru.skypro.pets_home_bot.api_bot.model.ShelterInfo;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterInfoService;
@@ -22,13 +24,14 @@ public class ShelterInfoDescriptionExecute implements ExecuteMessage {
     }
 
     @Override
-    public String execute(Update update) {
+    public BaseRequest execute(Update update) {
         int id = parseUtil.getIdLink(update.message().text());
+        long chatId = update.message().chat().id();
         Optional<ShelterInfo> shelterInfo = shelterInfoService.findById(id);
         if (shelterInfo.isEmpty()) {
-            return "Информация отсутствует";
+            return new SendMessage(chatId, "Нет информации о приюте");
         }
-        return shelterInfo.get().getDefinition();
+        return new SendMessage(chatId, shelterInfo.get().getDefinition());
     }
 
     @Override

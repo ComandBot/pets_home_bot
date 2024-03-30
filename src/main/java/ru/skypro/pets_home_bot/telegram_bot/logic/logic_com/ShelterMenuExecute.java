@@ -1,6 +1,8 @@
 package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
 
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Component;
 import ru.skypro.pets_home_bot.api_bot.enums.PetsTypes;
 import ru.skypro.pets_home_bot.api_bot.model.Shelter;
@@ -31,19 +33,21 @@ public class ShelterMenuExecute implements ExecuteMessage {
     }
 
     @Override
-    public String execute(Update update) {
+    public BaseRequest execute(Update update) {
         String link = update.message().text();
         int id = parseUtil.getIdLink(link);
+        long chatId = update.message().chat().id();
         Optional<Shelter> shelterOptional = shelterService.findByShelterId(id);
         if (shelterOptional.isEmpty()) {
-            return "Такого приюта не существует";
+            return new SendMessage(chatId, "Такого приюта не существует");
         }
         Shelter shelter = shelterOptional.get();
         String typePets = shelter.getPetsTypes().equals(PetsTypes.CAT) ? "котов" : "собак";
         String shelterInfo = parseUtil.tempParse(SHELTER_INFOS_NUM, id);
         String shelterTakeInfo = parseUtil.tempParse(SHELTER_TAKE_INFOS_NUM, id);
 
-        return String.format(menu, typePets, shelterInfo, shelterTakeInfo, SEND_REPORT, HELP);
+        return new SendMessage(chatId,
+                String.format(menu, typePets, shelterInfo, shelterTakeInfo, SEND_REPORT, HELP));
     }
 
     @Override

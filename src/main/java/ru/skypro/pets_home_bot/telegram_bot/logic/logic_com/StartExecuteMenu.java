@@ -1,6 +1,8 @@
 package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
 
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Component;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 import ru.skypro.pets_home_bot.api_bot.service.VolunteerService;
@@ -31,7 +33,7 @@ public class StartExecuteMenu implements ExecuteMessage {
 
 
     @Override
-    public String execute(Update update) {
+    public BaseRequest execute(Update update) {
         long chatId = update.message().chat().id();
 
         if (petUserService.findByChatIdPetUser(chatId) != null) {
@@ -40,7 +42,7 @@ public class StartExecuteMenu implements ExecuteMessage {
         if (volunteerService.findByChatIdVolunteer(chatId) != null) {
             return volunteerExecuteMenu.execute(update);
         }
-        return String.format(menu, PET_USER, VOLUNTEER);
+        return new SendMessage(chatId, String.format(menu, PET_USER, VOLUNTEER));
     }
 
     @Override
