@@ -2,6 +2,7 @@ package ru.skypro.pets_home_bot.api_bot.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.skypro.pets_home_bot.api_bot.enums.MessageMode;
 
 import java.util.List;
 
@@ -16,6 +17,10 @@ public class PetUser {
 
     @Column(name = "chat_id")
     private long chatId;
+
+    @Column(name = "message_mode")
+    @Enumerated(EnumType.STRING)
+    private MessageMode messageMode;
 
     @OneToMany(mappedBy = "ownerId.petUser", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)

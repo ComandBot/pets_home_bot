@@ -1,11 +1,13 @@
-package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
+package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.default_mode;
 
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Component;
+import ru.skypro.pets_home_bot.api_bot.enums.MessageMode;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 import ru.skypro.pets_home_bot.api_bot.service.VolunteerService;
+import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
 
 import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.*;
 
@@ -48,5 +50,10 @@ public class StartExecuteMenu implements ExecuteMessage {
     @Override
     public String getLink() {
         return START;
+    }
+
+    @Override
+    public MessageMode getMessageMode() {
+        return MessageMode.DEFAULT;
     }
 }

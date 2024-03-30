@@ -1,12 +1,14 @@
-package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com;
+package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.default_mode;
 
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.request.SendPhoto;
 import org.springframework.stereotype.Component;
+import ru.skypro.pets_home_bot.api_bot.enums.MessageMode;
 import ru.skypro.pets_home_bot.api_bot.model.ShelterScheme;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterSchemeService;
+import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
 import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
 
 import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.SHELTER_SCHEME_NUM;
@@ -36,5 +38,10 @@ public class ShelterSchemeExecute implements ExecuteMessage {
     @Override
     public String getLink() {
         return SHELTER_SCHEME_NUM;
+    }
+
+    @Override
+    public MessageMode getMessageMode() {
+        return MessageMode.DEFAULT;
     }
 }

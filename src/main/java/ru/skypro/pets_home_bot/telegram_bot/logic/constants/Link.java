@@ -37,6 +37,8 @@ public class Link {
     /**
      * /shelterscheme_num - получить схему подъезда
      */
+    public static final String CANSEL_CONTACT = "/canselcontact";
+    public static final String DEFAULT_TEXT = "defaulttext";
 
 
 }
