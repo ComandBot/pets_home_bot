@@ -6,6 +6,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Service;
 import ru.skypro.pets_home_bot.api_bot.enums.MessageMode;
 import ru.skypro.pets_home_bot.api_bot.model.PetUser;
+import ru.skypro.pets_home_bot.api_bot.model.Volunteer;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 import ru.skypro.pets_home_bot.api_bot.service.VolunteerService;
 
@@ -29,18 +30,18 @@ public class ManagerMessageService {
 
     public BaseRequest answer(Update update) {
         long chatId = update.message().chat().id();
+        return messageServiceMap.get(getMessageMode(chatId)).answer(update);
+    }
+
+    private MessageMode getMessageMode(long chatId) {
         PetUser petUser = petUserService.findByChatIdPetUser(chatId);
-        MessageMode messageMode;
-        String text = update.message().text();
         if (petUser != null) {
-            messageMode = petUser.getMessageMode();
-            if (messageMode == null) {
-                messageMode = MessageMode.DEFAULT;
-                petUser.setMessageMode(messageMode);
-                petUserService.add(petUser);
-            }
-            return messageServiceMap.get(messageMode).answer(update);
+            return petUser.getMessageMode();
         }
-        return new SendMessage(chatId, "что-то не то");
+        Volunteer volunteer = volunteerService.findByChatIdVolunteer(chatId);
+        if (volunteer != null) {
+            return volunteer.getMessageMode();
+        }
+        return MessageMode.DEFAULT;
     }
 }

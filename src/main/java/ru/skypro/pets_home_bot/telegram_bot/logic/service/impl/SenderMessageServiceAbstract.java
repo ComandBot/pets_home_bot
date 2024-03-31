@@ -10,13 +10,18 @@ import ru.skypro.pets_home_bot.telegram_bot.logic.service.SenderMessageService;
 import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
 
 import java.util.Map;
+import java.util.Set;
+
 import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.DEFAULT_TEXT;
 
 public abstract class SenderMessageServiceAbstract implements SenderMessageService {
 
     private final ParseUtil parseUtil;
     private  final Map<String, ExecuteMessage> messageMap;
-
+    private final Set<MessageMode> messageModes = Set.of(
+            MessageMode.HELP,
+            MessageMode.CONTACT
+    );
     public SenderMessageServiceAbstract(ParseUtil parseUtil, Map<String, ExecuteMessage> messageMap) {
         this.parseUtil = parseUtil;
         this.messageMap = messageMap;
@@ -27,11 +32,12 @@ public abstract class SenderMessageServiceAbstract implements SenderMessageServi
         validateUpdate(update);
         long chatId = update.message().chat().id();
         String text = parseUtil.parseLink(update.message().text());
-        if (getMessageMode().equals(MessageMode.CONTACT)) {
-            text = DEFAULT_TEXT;
-        }
         if (!messageMap.containsKey(text)) {
-            return new SendMessage(chatId, "Команда не правильная");
+            if (messageModes.contains(getMessageMode())) {
+                text = DEFAULT_TEXT;
+            } else {
+                return new SendMessage(chatId, "Команда не правильная");
+            }
         }
         return messageMap.get(text).execute(update);
     }
@@ -39,10 +45,6 @@ public abstract class SenderMessageServiceAbstract implements SenderMessageServi
     private void validateUpdate(Update update) {
         Message message = update.message();
         if (message == null) {
-            throw new RuntimeException();
-        }
-        String text = message.text();
-        if (text == null) {
             throw new RuntimeException();
         }
     }
