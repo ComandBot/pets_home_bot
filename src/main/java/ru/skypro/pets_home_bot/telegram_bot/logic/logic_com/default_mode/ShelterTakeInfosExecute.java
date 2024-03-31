@@ -47,7 +47,7 @@ public class ShelterTakeInfosExecute implements ExecuteMessage {
                 .collect(Collectors.joining("\n"));
         String result = String.format(menu + consStringList,
                 shelter.getNameShelter(),
-                SHOW_LIST_PETS_SHELTER_NUM,
+                parseUtil.tempParse(SHOW_LIST_PETS_SHELTER_NUM, idShelter),
                 CONTACT,
                 HELP);
         return new SendMessage(chatId, result);

@@ -3,6 +3,7 @@ package ru.skypro.pets_home_bot.api_bot.service;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface PetService {
     /**
@@ -32,11 +33,7 @@ public interface PetService {
      */
     void deletePet(Integer pet);
 
-    /**
-     * поиск питомца по имени
-     *
-     * @param name
-     * @return
-     */
-   Collection <Pet> findByName(String name);
+    List<Pet> findPetsByShelterId(int shelterId);
+
+    Collection<Pet> findByName(String name);
 }

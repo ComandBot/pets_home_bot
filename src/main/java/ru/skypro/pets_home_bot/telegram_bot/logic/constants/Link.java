@@ -41,6 +41,7 @@ public class Link {
     public static final String DEFAULT_TEXT = "defaulttext";
     public static final String SHOW_LIST_PETS_SHELTER_NUM = "/showpetslistshelter_num";
     public static final String SHELTER_TAKE_INFO_ID_NUM = "/sheltertakeinfoid_num";
+    public static final String PET_SHELTER_ID_NUM = "/petshelterid_num";
 
 
 }

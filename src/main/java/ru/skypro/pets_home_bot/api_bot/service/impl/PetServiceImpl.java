@@ -6,6 +6,7 @@ import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
 import ru.skypro.pets_home_bot.api_bot.service.PetService;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class PetServiceImpl implements PetService {
@@ -37,9 +38,12 @@ private final PetRepository petRepository;
     }
 
     @Override
+    public List<Pet> findPetsByShelterId(int shelterId) {
+        return petRepository.findAllByShelterId(shelterId);
+    }
+
+    @Override
     public Collection<Pet> findByName(String name) {
         return petRepository.findByName(name);
     }
-
-
 }
