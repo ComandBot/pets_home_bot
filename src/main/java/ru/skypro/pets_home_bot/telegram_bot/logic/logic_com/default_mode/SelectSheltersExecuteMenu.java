@@ -29,15 +29,14 @@ public class SelectSheltersExecuteMenu implements ExecuteMessage {
     @Override
     public BaseRequest execute(Update update) {
         long chatId = update.message().chat().id();
-
-        if (volunteerService.findByChatIdVolunteer(chatId) != null) {
-            return new SendMessage(chatId, String.format(menu, SHELTERS_CATS, SHELTERS_DOGS));
+        PetUser petUser = petUserService.findByChatIdPetUser(chatId);
+        if (petUser != null) {
+            return new SendMessage(chatId, "Вы уже зарегестрированы как усыновитель");
         }
-        if (petUserService.findByChatIdPetUser(chatId) == null) {
-            PetUser petUser = new PetUser();
-            petUser.setChatId(chatId);
-            petUserService.add(petUser);
-        }
+        petUser = new PetUser();
+        petUser.setChatId(chatId);
+        petUser.setMessageMode(MessageMode.DEFAULT);
+        petUserService.add(petUser);
         return new SendMessage(chatId, String.format(menu, SHELTERS_CATS, SHELTERS_DOGS));
     }
 
