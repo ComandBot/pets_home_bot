@@ -17,12 +17,12 @@ public class VolunteerServiceImpl implements VolunteerService {
 
     @Override
     public Volunteer add(Volunteer volunteer) {
-        return null;
+        return volunteerRepository.save(volunteer);
     }
 
     @Override
-    public Volunteer delete(int volunteerId) {
-        return null;
+    public void delete(int volunteerId) {
+        volunteerRepository.deleteById(volunteerId);
     }
 
     @Override

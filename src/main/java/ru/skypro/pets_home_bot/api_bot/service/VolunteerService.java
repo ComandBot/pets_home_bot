@@ -14,10 +14,9 @@ public interface VolunteerService {
 
     /**
      * Удаление волонтера из системы приютов
-     * @param volunteerId - id удаляемого волонтера
-     * @return - возвращает удаленного волонтера млм null
+     * @param volunteerId id волонтера
      */
-    Volunteer delete(int volunteerId);
+    void delete(int volunteerId);
 
     /**
      * При вызове волонтера усыновителем устанавливает связь с ним
