@@ -36,4 +36,6 @@ public interface PetService {
     List<Pet> findPetsByShelterId(int shelterId);
 
     Collection<Pet> findByName(String name);
+
+    Pet findById(int id);
 }
