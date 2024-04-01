@@ -30,13 +30,16 @@ public class SelectSheltersExecuteMenu implements ExecuteMessage {
     public BaseRequest execute(Update update) {
         long chatId = update.message().chat().id();
         PetUser petUser = petUserService.findByChatIdPetUser(chatId);
-        if (petUser != null) {
+        String text = update.message().text();
+        if (petUser != null && PET_USER.equals(text)) {
             return new SendMessage(chatId, "Вы уже зарегестрированы как усыновитель");
         }
-        petUser = new PetUser();
-        petUser.setChatId(chatId);
-        petUser.setMessageMode(MessageMode.DEFAULT);
-        petUserService.add(petUser);
+        if (petUser == null) {
+            petUser = new PetUser();
+            petUser.setChatId(chatId);
+            petUser.setMessageMode(MessageMode.DEFAULT);
+            petUserService.add(petUser);
+        }
         return new SendMessage(chatId, String.format(menu, SHELTERS_CATS, SHELTERS_DOGS));
     }
 
