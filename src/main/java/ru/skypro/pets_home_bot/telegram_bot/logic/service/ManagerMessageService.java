@@ -42,6 +42,6 @@ public class ManagerMessageService {
         if (volunteer != null) {
             return volunteer.getMessageMode();
         }
-        return MessageMode.DEFAULT;
+        return MessageMode.START;
     }
 }
