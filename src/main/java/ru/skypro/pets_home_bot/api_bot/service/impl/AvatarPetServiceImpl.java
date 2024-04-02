@@ -35,4 +35,17 @@ public class AvatarPetServiceImpl implements AvatarPetService {
         avatarPet.setData(avatar);
         return avatarPetRepository.save(avatarPet);
     }
+
+    @Override
+    public Optional<AvatarPet> findAvatarPetByPetId(int petId) {
+        Optional<Pet> optionalPet = petRepository.findById(petId);
+        if (optionalPet.isEmpty()) {
+            return Optional.empty();
+        }
+        AvatarPet avatarPet = optionalPet.get().getAvatarPet();
+        if (avatarPet == null) {
+            return Optional.empty();
+        }
+        return Optional.of(avatarPet);
+    }
 }
