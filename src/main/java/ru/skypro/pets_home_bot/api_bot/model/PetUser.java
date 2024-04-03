@@ -22,13 +22,6 @@ public class PetUser {
     @Enumerated(EnumType.STRING)
     private MessageMode messageMode;
 
-    @OneToMany(mappedBy = "ownerId.petUser", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<Owner> owners;
-
     @OneToOne(mappedBy = "workUserId")
     private Volunteer volunteer;
-
-    @OneToMany(mappedBy = "petUser")
-    private List<Contact> contacts;
 }

@@ -42,9 +42,7 @@ public class Link {
     public static final String SHOW_LIST_PETS_SHELTER_NUM = "/showpetslistshelter_num";
     public static final String SHELTER_TAKE_INFO_ID_NUM = "/sheltertakeinfoid_num";
     public static final String PET_SHELTER_ID_NUM = "/petshelterid_num";
-    public static final String PET_TAKE_ID_NUM = "/pettakeid_num";
     public static final String AVATAR_PHOTO_PET_ID_NUM = "/avatarphotopetid_num";
-    public static final String AVATAR_DESCRIPTION_PET_ID_NUM = "/avatardescpetid_num";
-
-
+    public static final String ORDER_FROM_PET_USER_ID_NUM1_PET_ID_NUM2 = "/orderpetuserpet_num1_num2";
+    public static final String PET_TAKE_ID_NUM = "/takepetid_num";
 }

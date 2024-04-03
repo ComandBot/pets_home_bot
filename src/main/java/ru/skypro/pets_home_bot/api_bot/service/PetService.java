@@ -4,6 +4,7 @@ import ru.skypro.pets_home_bot.api_bot.model.Pet;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public interface PetService {
     /**
@@ -12,13 +13,6 @@ public interface PetService {
      * @return
      */
     Pet addPet(Pet pet);
-
-    /**
-     * метод для получения информации о питомце по id
-     * @param pet
-     * @return
-     */
-    Pet getPet(int pet);
 
     /**
      * метод для обновления данных о питомце
@@ -37,5 +31,7 @@ public interface PetService {
 
     Collection<Pet> findByName(String name);
 
-    Pet findById(int id);
+    Optional<Pet> findById(int id);
+
+    List<Pet> findAllByShelterAndIdInOwner(int shelterId);
 }

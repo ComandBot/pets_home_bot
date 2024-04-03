@@ -31,7 +31,14 @@ public abstract class SenderMessageServiceAbstract implements SenderMessageServi
     public BaseRequest answer(Update update) {
         validateUpdate(update);
         long chatId = update.message().chat().id();
-        String text = parseUtil.parseLink(update.message().text());
+        String text = update.message().text();
+        int length = text.split("_").length;
+        if (length == 3) {
+            text = parseUtil.parseTwoLink(text);
+        }
+        if (length == 2) {
+            text = parseUtil.parseLink(text);
+        }
         if (!messageMap.containsKey(text)) {
             if (messageModes.contains(getMessageMode())) {
                 text = DEFAULT_TEXT;

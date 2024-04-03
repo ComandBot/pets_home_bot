@@ -42,7 +42,7 @@ public class AvatarPetServiceImpl implements AvatarPetService {
         if (optionalPet.isEmpty()) {
             return Optional.empty();
         }
-        AvatarPet avatarPet = optionalPet.get().getAvatarPet();
+        AvatarPet avatarPet = avatarPetRepository.findByPetId(petId);
         if (avatarPet == null) {
             return Optional.empty();
         }

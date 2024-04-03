@@ -25,12 +25,6 @@ private final PetRepository petRepository;
     public Pet addPet(Pet pet) {
         return petRepository.save(pet);
     }
-
-    @Override
-    public Pet getPet(int id) {
-        return petRepository.findById(id).get();
-    }
-
     @Override
     public Pet updatePet(Pet pet) {
         return petRepository.save(pet);
@@ -52,11 +46,12 @@ private final PetRepository petRepository;
     }
 
     @Override
-    public Pet findById(int id) {
-        Optional<Pet> optionalPet = petRepository.findById(id);
-        if (optionalPet.isEmpty()) {
-            throw new NoSuchElementException("Такого животного нет");
-        }
-        return optionalPet.get();
+    public Optional<Pet> findById(int id) {
+        return petRepository.findById(id);
+    }
+
+    @Override
+    public List<Pet> findAllByShelterAndIdInOwner(int shelterId) {
+        return petRepository.findAllByShelterAndIdInOwner(shelterId);
     }
 }

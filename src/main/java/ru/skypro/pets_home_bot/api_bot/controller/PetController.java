@@ -9,6 +9,7 @@ import ru.skypro.pets_home_bot.api_bot.service.PetService;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("pet")
@@ -27,16 +28,13 @@ public class PetController {
                             description = "найден питомец по id"
                     )
             })
-    @GetMapping("{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Pet> getPetInfo(@PathVariable int id) {
 
-        Pet pet = petService.getPet(id);
-        if (pet == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(pet);
+        Optional<Pet> petOption = petService.findById(id);
+        return petOption.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
-
+    /*
     @Operation(
             summary = "поиск питомца по имени",
             responses = {
@@ -95,5 +93,5 @@ public class PetController {
     public ResponseEntity deletePet(@PathVariable int id) {
         petService.deletePet(id);
         return ResponseEntity.ok().build();
-    }
+    }*/
 }
