@@ -20,14 +20,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class SenderMessageServiceImpl extends SenderMessageServiceAbstract {
 
-    private final ParseUtil parseUtil;
-
     public SenderMessageServiceImpl(ParseUtil parseUtil, List<ExecuteMessage> executeMessages) {
-        super(parseUtil, executeMessages.stream()
-                .filter(e -> e.getMessageMode().equals(MessageMode.DEFAULT))
-                .collect(Collectors.toMap(ExecuteMessage::getLink,
-                        Function.identity())));
-        this.parseUtil = parseUtil;
+        super(parseUtil, executeMessages, MessageMode.DEFAULT);
     }
 
     @Override

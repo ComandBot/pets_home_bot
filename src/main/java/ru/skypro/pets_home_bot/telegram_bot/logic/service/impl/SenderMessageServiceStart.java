@@ -12,12 +12,8 @@ import java.util.stream.Collectors;
 @Service
 public class SenderMessageServiceStart extends SenderMessageServiceAbstract {
     public SenderMessageServiceStart(ParseUtil parseUtil, List<ExecuteMessage> executeMessages) {
-        super(parseUtil, executeMessages.stream()
-                .filter(e -> e.getMessageMode().equals(MessageMode.START))
-                .collect(Collectors.toMap(ExecuteMessage::getLink,
-                        Function.identity())));
+        super(parseUtil, executeMessages, MessageMode.START);
     }
-
     @Override
     public MessageMode getMessageMode() {
         return MessageMode.START;

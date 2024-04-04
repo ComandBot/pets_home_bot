@@ -15,11 +15,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 @Service
 public class SenderMessageServiceContact extends SenderMessageServiceAbstract {
+
     public SenderMessageServiceContact(ParseUtil parseUtil, List<ExecuteMessage> executeMessages) {
-        super(parseUtil, executeMessages.stream()
-                .filter(e -> e.getMessageMode().equals(MessageMode.CONTACT))
-                .collect(Collectors.toMap(ExecuteMessage::getLink,
-                        Function.identity())));
+        super(parseUtil, executeMessages, MessageMode.CONTACT);
     }
 
     @Override

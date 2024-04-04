@@ -9,8 +9,11 @@ import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
 import ru.skypro.pets_home_bot.telegram_bot.logic.service.SenderMessageService;
 import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.DEFAULT_TEXT;
 
@@ -22,9 +25,14 @@ public abstract class SenderMessageServiceAbstract implements SenderMessageServi
             MessageMode.HELP,
             MessageMode.CONTACT
     );
-    public SenderMessageServiceAbstract(ParseUtil parseUtil, Map<String, ExecuteMessage> messageMap) {
+
+    public SenderMessageServiceAbstract(ParseUtil parseUtil, List<ExecuteMessage> executeMessages,
+                                        MessageMode messageMode) {
         this.parseUtil = parseUtil;
-        this.messageMap = messageMap;
+        this.messageMap = executeMessages.stream()
+                .filter(e -> e.getMessageMode().equals(messageMode))
+                .collect(Collectors.toMap(ExecuteMessage::getLink,
+                        Function.identity()));
     }
 
     @Override
