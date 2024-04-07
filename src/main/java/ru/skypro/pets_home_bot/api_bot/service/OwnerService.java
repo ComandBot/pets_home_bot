@@ -3,6 +3,8 @@ package ru.skypro.pets_home_bot.api_bot.service;
 import ru.skypro.pets_home_bot.api_bot.model.Owner;
 import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 
+import java.util.Optional;
+
 public interface OwnerService {
     /**
      * Добавление владельца питомца на испытательный срок. Испытательный срок определяется от текущей даты усыновления.
@@ -40,5 +42,7 @@ public interface OwnerService {
      */
     Owner deleteOwnerIfTestPeriodNotPassed(OwnerId ownerId);
 
+    Optional<Owner> findByOwnerId(OwnerId ownerId);
 
+    Optional<Owner> findByPetIdAndPetUserId(int petId, int petUserId);
 }

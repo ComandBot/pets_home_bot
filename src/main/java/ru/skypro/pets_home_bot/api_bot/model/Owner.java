@@ -19,9 +19,5 @@ public class Owner {
     private int testPeriod;
 
     @Column(name = "date_delivery")
-    @CreationTimestamp
     private LocalDateTime dateDelivery;
-
-    @OneToMany(mappedBy = "owner")
-    private List<Report> reports;
 }

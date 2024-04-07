@@ -22,13 +22,4 @@ public class Shelter {
     @Column(name = "pet_type")
     @Enumerated(EnumType.STRING)
     private PetsTypes petsTypes;
-
-    @OneToMany(mappedBy = "shelter")
-    private List<Pet> pets;
-
-    @OneToMany(mappedBy = "shelter")
-    private List<Consultation> consultations;
-
-    @OneToMany(mappedBy = "shelter")
-    private List<ShelterInfo> shelterInfos;
 }

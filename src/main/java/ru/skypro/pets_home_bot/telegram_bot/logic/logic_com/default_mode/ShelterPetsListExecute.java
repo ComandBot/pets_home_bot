@@ -44,7 +44,10 @@ public class ShelterPetsListExecute implements ExecuteMessage {
         if (shelterOptional.isEmpty()) {
             return new SendMessage(chatId, "Нет убежища");
         }
-        List<Pet> pets = petService.findPetsByShelterId(shelterId);
+        List<Pet> pets = petService.findAllByShelterAndIdInOwner(shelterId);
+        if (pets.isEmpty()) {
+            return new SendMessage(chatId, "В приюте свободных животных нет");
+        }
         String result = String.format(menu + pets.stream()
                 .map(e -> parseUtil.tempParse(PET_SHELTER_ID_NUM, e.getId()) + " - " + e.getName())
                 .collect(Collectors.joining("\n")), shelterOptional.get().getNameShelter());

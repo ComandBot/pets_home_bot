@@ -14,12 +14,6 @@ public class Pet {
     @Column(name = "pet_name")
     private String name;
 
-    @OneToOne(mappedBy = "ownerId.pet")
-    private Owner owner;
-
-    @OneToOne(mappedBy = "pet")
-    private AvatarPet avatarPet;
-
     @ManyToOne
     @JoinColumn(name = "shelter_id")
     private Shelter shelter;

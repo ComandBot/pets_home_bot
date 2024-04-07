@@ -1,4 +1,4 @@
-package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.default_mode;
+package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.start_mode;
 
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
@@ -37,13 +37,6 @@ public class StartExecuteMenu implements ExecuteMessage {
     @Override
     public BaseRequest execute(Update update) {
         long chatId = update.message().chat().id();
-
-        if (petUserService.findByChatIdPetUser(chatId) != null) {
-            return sheltersExecuteMenu.execute(update);
-        }
-        if (volunteerService.findByChatIdVolunteer(chatId) != null) {
-            return volunteerExecuteMenu.execute(update);
-        }
         return new SendMessage(chatId, String.format(menu, PET_USER, VOLUNTEER));
     }
 
@@ -54,6 +47,6 @@ public class StartExecuteMenu implements ExecuteMessage {
 
     @Override
     public MessageMode getMessageMode() {
-        return MessageMode.DEFAULT;
+        return MessageMode.START;
     }
 }
