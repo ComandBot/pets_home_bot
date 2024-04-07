@@ -54,4 +54,9 @@ private final PetRepository petRepository;
     public List<Pet> findAllByShelterAndIdInOwner(int shelterId) {
         return petRepository.findAllByShelterAndIdInOwner(shelterId);
     }
+
+    @Override
+    public List<Pet> findByReportPetsList(int petUserId) {
+        return petRepository.findByReportPetsList(petUserId);
+    }
 }

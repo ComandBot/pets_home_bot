@@ -43,4 +43,6 @@ public interface OwnerService {
     Owner deleteOwnerIfTestPeriodNotPassed(OwnerId ownerId);
 
     Optional<Owner> findByOwnerId(OwnerId ownerId);
+
+    Optional<Owner> findByPetIdAndPetUserId(int petId, int petUserId);
 }

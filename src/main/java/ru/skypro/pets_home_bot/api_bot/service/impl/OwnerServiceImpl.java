@@ -41,4 +41,9 @@ public class OwnerServiceImpl implements OwnerService {
     public Optional<Owner> findByOwnerId(OwnerId ownerId) {
         return ownerRepository.findByOwnerId(ownerId);
     }
+
+    @Override
+    public Optional<Owner> findByPetIdAndPetUserId(int petId, int petUserId) {
+        return ownerRepository.findByPetIdAndPetUserId(petId, petUserId);
+    }
 }

@@ -34,4 +34,6 @@ public interface PetService {
     Optional<Pet> findById(int id);
 
     List<Pet> findAllByShelterAndIdInOwner(int shelterId);
+
+    List<Pet> findByReportPetsList(int petUserId);
 }

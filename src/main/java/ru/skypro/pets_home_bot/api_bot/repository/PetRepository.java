@@ -14,5 +14,10 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
             nativeQuery = true)
     List<Pet> findAllByShelterAndIdInOwner(int shelterId);
 
+    @Query(value = "select * from pets\n" +
+            "where id in (select pet_id from owners\n" +
+            "                           where pet_user_id = ?1 and date_delivery is not null)",
+    nativeQuery = true)
+    List<Pet> findByReportPetsList(int petUserId);
     Collection<Pet> findByName(String name);
 }

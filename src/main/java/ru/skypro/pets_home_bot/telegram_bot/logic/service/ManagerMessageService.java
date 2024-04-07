@@ -35,11 +35,11 @@ public class ManagerMessageService {
 
     private MessageMode getMessageMode(long chatId) {
         PetUser petUser = petUserService.findByChatIdPetUser(chatId);
-        if (petUser != null) {
+        if (petUser != null && petUser.getMessageMode() != null) {
             return petUser.getMessageMode();
         }
         Volunteer volunteer = volunteerService.findByChatIdVolunteer(chatId);
-        if (volunteer != null) {
+        if (volunteer != null && volunteer.getMessageMode() != null) {
             return volunteer.getMessageMode();
         }
         return MessageMode.START;
