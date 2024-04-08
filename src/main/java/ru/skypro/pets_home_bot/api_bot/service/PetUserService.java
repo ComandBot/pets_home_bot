@@ -15,7 +15,7 @@ public interface PetUserService {
      * @param idPetUser - id усыновителя
      * @return - возвращает удаленног усыновителя или null
      */
-    PetUser deletePetUser(int idPetUser);
+    void deletePetUser(int idPetUser);
 
     /**
      * Поиск усыновителя(или владельца животного, если усыновитель является владельцем на испытательном сроке)

@@ -23,10 +23,9 @@ public class PetUserServiceImpl implements PetUserService {
     }
 
     @Override
-    public PetUser deletePetUser(int idPetUser) {
+    public void deletePetUser(int idPetUser) {
         PetUser petUser = petUserRepository.findById(idPetUser).orElseThrow();
         petUserRepository.delete(petUser);
-        return petUser;
     }
 
     @Override

@@ -5,4 +5,6 @@ import ru.skypro.pets_home_bot.api_bot.model.Volunteer;
 
 public interface VolunteerRepository extends JpaRepository<Volunteer, Long> {
     Volunteer findByChatId(long chatId);
+
+    void deleteById(int volunteerId);
 }
