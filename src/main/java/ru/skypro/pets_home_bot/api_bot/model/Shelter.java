@@ -19,23 +19,7 @@ public class Shelter {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Lob
-    private byte[] scheme;
-
     @Column(name = "pet_type")
     @Enumerated(EnumType.STRING)
     private PetsTypes petsTypes;
-
-    @OneToMany(mappedBy = "shelter")
-    private List<Pet> pets;
-
-    @OneToMany(mappedBy = "shelter")
-    private List<Consultation> consultations;
-
-    @OneToMany(mappedBy = "shelter")
-    private List<ShelterInfo> shelterInfos;
-
-
-
-
 }

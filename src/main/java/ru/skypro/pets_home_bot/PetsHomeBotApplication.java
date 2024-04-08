@@ -11,5 +11,4 @@ public class PetsHomeBotApplication {
     public static void main(String[] args) {
         SpringApplication.run(PetsHomeBotApplication.class, args);
     }
-//Alik
 }

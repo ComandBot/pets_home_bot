@@ -20,5 +20,4 @@ public class AvatarPet {
     @OneToOne
     @JoinColumn(name = "pet_id")
     private Pet pet;
-
 }
