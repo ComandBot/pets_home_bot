@@ -54,7 +54,7 @@ public class SendPhotoExecute implements ExecuteMessage {
         } catch (IOException e) {
             return new SendMessage(chatId, "Загрузить фото не получилось");
         }
-        Report report = petReportExecuteMenu.getReport();
+        Report report = petReportExecuteMenu.getReport(chatId);
         if (report == null) {
             return new SendMessage(chatId, "Выйдете из режима отправки отчета и зайдите еще раз");
         }

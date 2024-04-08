@@ -30,7 +30,7 @@ public class SendConfirmReportExecute implements ExecuteMessage {
     @Override
     public BaseRequest execute(Update update) {
         long chatId = update.message().chat().id();
-        Report report = petReportExecuteMenu.getReport();
+        Report report = petReportExecuteMenu.getReport(chatId);
         PetUser petUser = petUserService.findByChatIdPetUser(chatId);
         if (petUser == null) {
             return new SendMessage(chatId, "Зарегестрируйтесь в боте");
@@ -54,6 +54,7 @@ public class SendConfirmReportExecute implements ExecuteMessage {
         reportService.add(report);
         petUser.setMessageMode(MessageMode.DEFAULT);
         petUserService.add(petUser);
+        petReportExecuteMenu.removeReport(chatId);
         return new SendMessage(chatId, "Отчет успешно загружен");
     }
 

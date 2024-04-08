@@ -33,7 +33,7 @@ public class SendDietExecute implements ExecuteMessage {
         if (diet.isEmpty()) {
             return new SendMessage(chatId, "Сообщение отсутствует");
         }
-        Report report = petReportExecuteMenu.getReport();
+        Report report = petReportExecuteMenu.getReport(chatId);
         if (report == null) {
             return new SendMessage(chatId, "Выйдете из режима отправки отчета и зайдите еще раз");
         }
