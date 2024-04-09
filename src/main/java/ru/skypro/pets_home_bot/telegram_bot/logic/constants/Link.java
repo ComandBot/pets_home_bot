@@ -55,6 +55,8 @@ public class Link {
     public static final String CANSEL_REPORT_DIET = "/canselreportdiet";
     public static final String CANSEL_REPORT_CONDITION = "/canselreportcondition";
     public static final String CANSEL_REPORT_BEHAVIOR = "/canselreportbehavior";
-
+    public static final String REPORTS = "/reports";
+    public static final String ORDERS = "/orders";
+    public static final String SOLUTION = "/solution";
 
 }
