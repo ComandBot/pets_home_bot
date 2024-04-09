@@ -13,7 +13,6 @@ public interface PetUserService {
     /**
      * Убирает регистрацию усыновителя
      * @param idPetUser - id усыновителя
-     * @return - возвращает удаленног усыновителя или null
      */
     void deletePetUser(int idPetUser);
 

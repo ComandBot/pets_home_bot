@@ -34,10 +34,17 @@ public class AvatarPetServiceImplTest {
         Pet pet = new Pet();
         pet.setId(1);
         when(petRepository.findById(anyInt())).thenReturn(Optional.of(pet));
-        AvatarPet avatarPet = out.save(1, "description", new byte[]{1, 2, 3});
-        assertNotNull(avatarPet);
-        assertEquals(1, avatarPet.getPet().getId());
-        assertEquals("description", avatarPet.getDescription());
+        AvatarPet avatarPet = new AvatarPet();
+        String desc = "desc";
+        byte[] avatar = new byte[] {1, 2, 3};
+        avatarPet.setData(avatar);
+        avatarPet.setDescription(desc);
+        avatarPet.setId(1);
+        when(avatarPetRepository.save(any(AvatarPet.class))).thenReturn(avatarPet);
+        AvatarPet expect = out.save(1, "description", new byte[]{1, 2, 3});
+        assertNotNull(expect);
+        assertEquals(1, expect.getId());
+        assertEquals(desc, expect.getDescription());
     }
 
     @Test
