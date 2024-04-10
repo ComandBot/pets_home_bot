@@ -58,5 +58,6 @@ public class Link {
     public static final String REPORTS = "/reports";
     public static final String ORDERS = "/orders";
     public static final String SOLUTION = "/solution";
-
+    public static final String CANSEL_COMMUNICATION = "/canselcommunication";
+    public static final String ANSWER_PET_USER = "/answer";
 }

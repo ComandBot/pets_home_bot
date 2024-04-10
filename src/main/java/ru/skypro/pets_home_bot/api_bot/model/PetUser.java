@@ -21,7 +21,4 @@ public class PetUser {
     @Column(name = "message_mode")
     @Enumerated(EnumType.STRING)
     private MessageMode messageMode;
-
-    @OneToOne(mappedBy = "workUserId")
-    private Volunteer volunteer;
 }

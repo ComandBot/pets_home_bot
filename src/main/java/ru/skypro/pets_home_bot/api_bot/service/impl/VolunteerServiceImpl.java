@@ -39,4 +39,14 @@ public class VolunteerServiceImpl implements VolunteerService {
     public Volunteer findByChatIdVolunteer(long chatId) {
         return volunteerRepository.findByChatId(chatId);
     }
+
+    @Override
+    public Volunteer findFirstByWorkUserIdIsNull() {
+        return volunteerRepository.findFirstByWorkUserIdIsNull();
+    }
+
+    @Override
+    public Volunteer findByWorkUserId(PetUser petUser) {
+        return volunteerRepository.findByWorkUserId(petUser);
+    }
 }

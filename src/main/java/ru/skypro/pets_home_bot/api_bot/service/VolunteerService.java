@@ -36,4 +36,8 @@ public interface VolunteerService {
     Volunteer removeWorkPetUser(int volunteerId);
 
     Volunteer findByChatIdVolunteer(long chatId);
+
+    Volunteer findFirstByWorkUserIdIsNull();
+
+    Volunteer findByWorkUserId(PetUser petUser);
 }

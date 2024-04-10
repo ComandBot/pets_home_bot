@@ -27,7 +27,9 @@ public abstract class SenderMessageServiceAbstract implements SenderMessageServi
             MessageMode.PHOTO_REPORT,
             MessageMode.DIET_REPORT,
             MessageMode.CONDITION_REPORT,
-            MessageMode.BEHAVIOR_REPORT
+            MessageMode.BEHAVIOR_REPORT,
+            MessageMode.COMMUNICATION_USER,
+            MessageMode.COMMUNICATION_VOLUNTEER
     );
 
     public SenderMessageServiceAbstract(ParseUtil parseUtil, List<ExecuteMessage> executeMessages,
