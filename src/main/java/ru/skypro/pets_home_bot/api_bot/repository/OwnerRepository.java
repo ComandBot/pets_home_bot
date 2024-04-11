@@ -15,4 +15,6 @@ public interface OwnerRepository extends JpaRepository<Owner, OwnerId> {
             "where pet_user_id = ?1 and pet_id = ?2 and date_delivery notnull ",
             nativeQuery = true)
     Optional<Owner> findByPetIdAndPetUserId(int petUserId, int petId);
+
+    List<Owner> findAllByDateDeliveryIsNull();
 }

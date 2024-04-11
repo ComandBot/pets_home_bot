@@ -6,6 +6,7 @@ import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 import ru.skypro.pets_home_bot.api_bot.repository.OwnerRepository;
 import ru.skypro.pets_home_bot.api_bot.service.OwnerService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,5 +46,10 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Optional<Owner> findByPetIdAndPetUserId(int petId, int petUserId) {
         return ownerRepository.findByPetIdAndPetUserId(petId, petUserId);
+    }
+
+    @Override
+    public List<Owner> findAllByDateDeliveryIsNull() {
+        return ownerRepository.findAllByDateDeliveryIsNull();
     }
 }

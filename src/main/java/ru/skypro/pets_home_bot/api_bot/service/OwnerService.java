@@ -3,6 +3,7 @@ package ru.skypro.pets_home_bot.api_bot.service;
 import ru.skypro.pets_home_bot.api_bot.model.Owner;
 import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface OwnerService {
@@ -45,4 +46,6 @@ public interface OwnerService {
     Optional<Owner> findByOwnerId(OwnerId ownerId);
 
     Optional<Owner> findByPetIdAndPetUserId(int petId, int petUserId);
+
+    List<Owner> findAllByDateDeliveryIsNull();
 }

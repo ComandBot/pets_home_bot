@@ -21,7 +21,7 @@ public class VolunteerMenuExecute implements ExecuteMessage {
     @Override
     public BaseRequest execute(Update update) {
         long chatId = update.message().chat().id();
-        String answer = String.format(menu, REPORTS, ORDERS, SOLUTION, ANSWER_PET_USER);
+        String answer = String.format(menu, ORDERS, REPORTS, SOLUTION, ANSWER_PET_USER);
         return new SendMessage(chatId, answer);
     }
 
