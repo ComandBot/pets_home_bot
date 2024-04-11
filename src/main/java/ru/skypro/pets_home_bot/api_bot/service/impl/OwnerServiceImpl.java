@@ -1,6 +1,7 @@
 package ru.skypro.pets_home_bot.api_bot.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.skypro.pets_home_bot.api_bot.model.Owner;
 import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 import ru.skypro.pets_home_bot.api_bot.repository.OwnerRepository;
@@ -51,5 +52,20 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public List<Owner> findAllByDateDeliveryIsNull() {
         return ownerRepository.findAllByDateDeliveryIsNull();
+    }
+
+    @Override
+    public Optional<Owner> findByPetIdAndPetUserIdWhereDateNull(int petUserId, int petId) {
+        return ownerRepository.findByPetIdAndPetUserIdWhereDateNull(petUserId, petId);
+    }
+
+    @Override
+    public void save(Owner owner) {
+        ownerRepository.save(owner);
+    }
+    @Transactional
+    @Override
+    public void deleteByOwnerId(OwnerId ownerId) {
+        ownerRepository.deleteByOwnerId(ownerId);
     }
 }

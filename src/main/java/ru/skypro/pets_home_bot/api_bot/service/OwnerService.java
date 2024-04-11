@@ -48,4 +48,10 @@ public interface OwnerService {
     Optional<Owner> findByPetIdAndPetUserId(int petId, int petUserId);
 
     List<Owner> findAllByDateDeliveryIsNull();
+
+    Optional<Owner> findByPetIdAndPetUserIdWhereDateNull(int petUserId, int petId);
+    void save(Owner owner);
+
+    void deleteByOwnerId(OwnerId ownerId);
+
 }

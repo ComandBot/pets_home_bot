@@ -22,12 +22,12 @@ public class ParseUtil {
     }
 
     public String tempParseTwoNum(String template, int petUserId, int petId) {
-        return template.replaceAll("num1", String.valueOf(petUserId))
-                .replaceAll("num2", String.valueOf(petId));
+        return template.replaceFirst(num, String.valueOf(petUserId))
+                .replaceFirst(num, String.valueOf(petId));
     }
 
     public String parseTwoLink(String link) {
-        return link.replaceFirst(regex, num1).replaceFirst(regex, num2);
+        return link.replaceFirst(regex, num).replaceFirst(regex, num);
     }
 
     public int getIdLink(String link) {

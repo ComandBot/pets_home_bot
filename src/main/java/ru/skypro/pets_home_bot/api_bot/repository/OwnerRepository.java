@@ -1,5 +1,6 @@
 package ru.skypro.pets_home_bot.api_bot.repository;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import ru.skypro.pets_home_bot.api_bot.model.Owner;
@@ -16,5 +17,11 @@ public interface OwnerRepository extends JpaRepository<Owner, OwnerId> {
             nativeQuery = true)
     Optional<Owner> findByPetIdAndPetUserId(int petUserId, int petId);
 
+    @Query(value = "select * from owners\n" +
+            "where pet_user_id = ?1 and pet_id = ?2 and date_delivery is null",
+            nativeQuery = true)
+    Optional<Owner> findByPetIdAndPetUserIdWhereDateNull(int petUserId, int petId);
+
     List<Owner> findAllByDateDeliveryIsNull();
+    void deleteByOwnerId(OwnerId ownerId);
 }

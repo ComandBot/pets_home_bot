@@ -60,5 +60,7 @@ public class Link {
     public static final String SOLUTION = "/solution";
     public static final String CANSEL_COMMUNICATION = "/canselcommunication";
     public static final String ANSWER_PET_USER = "/answer";
-    public static final String OWNER_USER_ID_PET_ID_NUM1_NUM2 = "/owner_num1_num2";
+    public static final String OWNER_USER_ID_PET_ID_NUM1_NUM2 = "/owner_num_num";
+    public static final String YES_ADOPTION_USER_PET_NUM1_NUM2 = "/yesadoption_num_num";
+    public static final String NO_ADOPTION_USER_PET_NUM1_NUM2 = "/noadoption_num_num";
 }
