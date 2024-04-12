@@ -71,7 +71,8 @@ public class ShowReportExecute implements ExecuteMessage {
         }
         String answer = String.format(template, report.getDateReport().format(DateTimeFormatter.ISO_DATE),
                 textContact, report.getDiet(), report.getCondition(), report.getBehaviour(),
-                VIEWED, parseUtil.tempParse(MESSAGE_USER_ID_NUM, petUser.getId()));
+                parseUtil.tempParse(VIEWED_REPORT_ID_NUM, report.getId()),
+                parseUtil.tempParse(MESSAGE_USER_ID_NUM, petUser.getId()));
         return new SendPhoto(chatId, report.getPhoto()).caption(answer);
     }
 

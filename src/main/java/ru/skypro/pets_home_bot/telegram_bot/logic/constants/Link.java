@@ -65,6 +65,6 @@ public class Link {
     public static final String YES_ADOPTION_USER_PET_NUM1_NUM2 = "/yesadoption_num_num";
     public static final String NO_ADOPTION_USER_PET_NUM1_NUM2 = "/noadoption_num_num";
     public static final String REPORT_ID_NUM = "/reportid_num";
-    public static final String VIEWED = "/viewed";
+    public static final String VIEWED_REPORT_ID_NUM = "/viewed_num";
     public static final String MESSAGE_USER_ID_NUM = "/messageuserid_num";
 }
