@@ -10,7 +10,7 @@ import ru.skypro.pets_home_bot.api_bot.projections.ReportIdDate;
 import java.util.List;
 
 public interface ReportIdDateRepository extends JpaRepository<Report, Integer> {
-    @Query(value = "select r.id, r.date_report from reports r where NOT r.is_viewed"
+    @Query(value = "select r.id as id, r.date_report as dateReport from reports r where NOT r.is_viewed"
             , nativeQuery = true)
     List<ReportIdDate> findAllByViewedIsFalse();
 }

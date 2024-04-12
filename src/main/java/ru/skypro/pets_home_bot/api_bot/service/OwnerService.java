@@ -3,6 +3,7 @@ package ru.skypro.pets_home_bot.api_bot.service;
 import ru.skypro.pets_home_bot.api_bot.model.Owner;
 import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public interface OwnerService {
 
     Optional<Owner> findByOwnerId(OwnerId ownerId);
 
-    Optional<Owner> findByPetIdAndPetUserId(int petId, int petUserId);
+    Optional<Owner> findByPetUserIdAndPetId(int petUserId, int petId);
 
     List<Owner> findAllByDateDeliveryIsNull();
 
@@ -53,5 +54,7 @@ public interface OwnerService {
     void save(Owner owner);
 
     void deleteByOwnerId(OwnerId ownerId);
+
+    List<Owner> findAllByDateDeliveryBetweenBeginAndEndTestPeriod();
 
 }

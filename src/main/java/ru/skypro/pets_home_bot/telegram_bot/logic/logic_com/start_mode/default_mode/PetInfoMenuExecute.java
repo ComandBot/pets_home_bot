@@ -3,6 +3,7 @@ package ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.start_mode.default_
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.request.SendPhoto;
 import org.springframework.stereotype.Component;
 import ru.skypro.pets_home_bot.api_bot.enums.MessageMode;
 import ru.skypro.pets_home_bot.api_bot.model.AvatarPet;
@@ -22,9 +23,10 @@ public class PetInfoMenuExecute implements ExecuteMessage {
 
     private final String menu = """ 
             Питомец по имени %s:
-            %s
+            ---------------------
             Описание:
             %s
+            ----------------------
             %s - Подать заявку на усыновление
             """;
 
@@ -48,7 +50,6 @@ public class PetInfoMenuExecute implements ExecuteMessage {
         if (petUser == null) {
             return new SendMessage(chatId, "Такого пользователя не существует");
         }
-        int petUserId = petUser.getId();
         int petId = parseUtil.getIdLink(text);
         Optional<Pet> optionalPet = petService.findById(petId);
         if (optionalPet.isEmpty()) {
@@ -63,19 +64,16 @@ public class PetInfoMenuExecute implements ExecuteMessage {
         }
         AvatarPet avatarPet = avatarPetOptional.get();
         String description = avatarPet.getDescription();
-        if (description.isEmpty()) {
+        if (description == null || description.isEmpty()) {
             description = "Описание отсутствует";
         }
         byte[] photo = avatarPet.getData();
-        String photoAnswer;
-        if (photo == null) {
-            photoAnswer = "Фото не загружено";
-        } else {
-            photoAnswer = parseUtil.tempParse(AVATAR_PHOTO_PET_ID_NUM, petId) + " - показать фото";
-        }
-        String answer = String.format(menu, pet.getName(), photoAnswer, description,
+        String answer = String.format(menu, pet.getName(), description,
                 parseUtil.tempParse(PET_TAKE_ID_NUM, petId));
-        return new SendMessage(chatId, answer);
+        if (photo == null) {
+            return new SendMessage(chatId, answer);
+        }
+        return new SendPhoto(chatId, photo).caption(answer);
     }
 
     @Override

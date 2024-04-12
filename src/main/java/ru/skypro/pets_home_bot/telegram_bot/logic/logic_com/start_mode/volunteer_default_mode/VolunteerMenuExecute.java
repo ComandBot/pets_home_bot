@@ -15,8 +15,8 @@ import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.SOLUTION
 public class VolunteerMenuExecute implements ExecuteMessage {
     private final String menu = """
             Меню волонтера:
-            %s - показать заявки на усыновление
             %s - показать отчеты владельцев
+            %s - показать заявки на усыновление
             %s - принятие решения по владельцам
             %s
             """;
@@ -39,7 +39,7 @@ public class VolunteerMenuExecute implements ExecuteMessage {
                     """;
             text = String.format(textTemp, ANSWER_PET_USER, CANSEL_USER_COMMUNICATION);
         }
-        String answer = String.format(menu, ORDERS, REPORTS, SOLUTION, text);
+        String answer = String.format(menu, REPORTS, ORDERS, SOLUTION, text);
         return new SendMessage(chatId, answer);
     }
 

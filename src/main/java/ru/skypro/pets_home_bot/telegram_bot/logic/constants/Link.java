@@ -67,4 +67,7 @@ public class Link {
     public static final String REPORT_ID_NUM = "/reportid_num";
     public static final String VIEWED_REPORT_ID_NUM = "/viewed_num";
     public static final String MESSAGE_USER_ID_NUM = "/messageuserid_num";
+
+    public static final String OWNERS_END = "/ownersend";
+    public static final String OWNERS_CUR = "/ownerscur";
 }

@@ -61,7 +61,7 @@ public class AdoptionYesExecute implements ExecuteMessage {
         if (ownerOptional.isEmpty()) {
             return new SendMessage(chatId, "Заявитель не найден или заявка обработана.");
         }
-        LocalDateTime endOfDay = LocalDate.now().atStartOfDay().plusDays(1).minusSeconds(1);
+        LocalDateTime endOfDay = LocalDate.now().atStartOfDay();
         Owner owner = ownerOptional.get();
         owner.setTestPeriod(days);
         owner.setDateDelivery(endOfDay);

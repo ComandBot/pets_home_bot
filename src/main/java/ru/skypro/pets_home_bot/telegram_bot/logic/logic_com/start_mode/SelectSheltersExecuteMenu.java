@@ -31,6 +31,9 @@ public class SelectSheltersExecuteMenu implements ExecuteMessage {
         PetUser petUser = new PetUser();
         petUser.setChatId(chatId);
         petUser.setMessageMode(MessageMode.DEFAULT);
+        petUser.setFirstName(update.message().chat().firstName());
+        petUser.setLastName(update.message().chat().lastName());
+        petUser.setUserName(update.message().chat().username());
         petUserService.add(petUser);
         return new SendMessage(chatId, String.format(menu, SHELTERS_CATS, SHELTERS_DOGS));
     }

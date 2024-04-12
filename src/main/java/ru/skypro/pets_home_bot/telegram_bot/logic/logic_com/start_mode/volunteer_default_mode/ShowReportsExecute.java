@@ -37,12 +37,11 @@ public class ShowReportsExecute implements ExecuteMessage {
     @Override
     public BaseRequest execute(Update update) {
         long chatId = update.message().chat().id();
-        //List<ReportIdDate> reportIdDates = reportService.findAllByIsViewedFalseProjection();
-        List<Report> reportsDateId = reportService.findAllByIsViewedFalse();
-        if (reportsDateId == null || reportsDateId.isEmpty()) {
+        List<ReportIdDate> reportIdDates = reportService.findAllByIsViewedFalseProjection();
+        if (reportIdDates == null || reportIdDates.isEmpty()) {
             return new SendMessage(chatId, "Не просмотренных отчетов нет");
         }
-        String reportStr = reportsDateId.stream()
+        String reportStr = reportIdDates.stream()
                 .map(e -> parseUtil.tempParse(REPORT_ID_NUM, e.getId()) + " - " + e.getDateReport().format(DateTimeFormatter.ISO_DATE))
                 .collect(Collectors.joining("\n"));
         String answer = String.format(template, reportStr);

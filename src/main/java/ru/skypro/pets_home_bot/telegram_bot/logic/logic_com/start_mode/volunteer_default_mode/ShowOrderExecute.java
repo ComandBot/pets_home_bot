@@ -6,13 +6,8 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.request.SendPhoto;
 import org.springframework.stereotype.Component;
 import ru.skypro.pets_home_bot.api_bot.enums.MessageMode;
-import ru.skypro.pets_home_bot.api_bot.model.AvatarPet;
-import ru.skypro.pets_home_bot.api_bot.model.Contact;
-import ru.skypro.pets_home_bot.api_bot.model.PetUser;
-import ru.skypro.pets_home_bot.api_bot.service.AvatarPetService;
-import ru.skypro.pets_home_bot.api_bot.service.ContactService;
-import ru.skypro.pets_home_bot.api_bot.service.PetService;
-import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
+import ru.skypro.pets_home_bot.api_bot.model.*;
+import ru.skypro.pets_home_bot.api_bot.service.*;
 import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
 import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
 
@@ -35,17 +30,19 @@ public class ShowOrderExecute implements ExecuteMessage {
             """;
     private final ParseUtil parseUtil;
     private final PetUserService petUserService;
+    private final OwnerService ownerService;
     private final PetService petService;
     private final AvatarPetService avatarPetService;
     private final ContactService contactService;
 
     public ShowOrderExecute(ParseUtil parseUtil,
                             PetUserService petUserService,
-                            PetService petService,
-                            AvatarPetService avatarPetService,
+                            OwnerService ownerService,
+                            PetService petService, AvatarPetService avatarPetService,
                             ContactService contactService) {
         this.parseUtil = parseUtil;
         this.petUserService = petUserService;
+        this.ownerService = ownerService;
         this.petService = petService;
         this.avatarPetService = avatarPetService;
         this.contactService = contactService;
@@ -61,6 +58,14 @@ public class ShowOrderExecute implements ExecuteMessage {
             return new SendMessage(chatId, "Пользователь не зарегестрирован");
         }
         PetUser petUser = optionalPetUser.get();
+        Optional<Pet> optionalPet = petService.findById(args[1]);
+        if (optionalPet.isEmpty()) {
+            return new SendMessage(chatId, "Животное не найдено");
+        }
+        Optional<Owner> ownerOptional = ownerService.findByPetIdAndPetUserIdWhereDateNull(args[0], args[1]);
+        if (ownerOptional.isEmpty()) {
+            return new SendMessage(chatId, "Заявка удалена");
+        }
         Contact contact = contactService.findByPetUser(petUser);
         String contactInfo = "Контактная информация отсутствует";
         if (contact != null) {

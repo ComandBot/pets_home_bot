@@ -7,6 +7,8 @@ import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 import ru.skypro.pets_home_bot.api_bot.repository.OwnerRepository;
 import ru.skypro.pets_home_bot.api_bot.service.OwnerService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +47,8 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public Optional<Owner> findByPetIdAndPetUserId(int petId, int petUserId) {
-        return ownerRepository.findByPetIdAndPetUserId(petId, petUserId);
+    public Optional<Owner> findByPetUserIdAndPetId(int petUserId, int petId) {
+        return ownerRepository.findByPetUserIdAndPetId(petId, petUserId);
     }
 
     @Override
@@ -67,5 +69,10 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public void deleteByOwnerId(OwnerId ownerId) {
         ownerRepository.deleteByOwnerId(ownerId);
+    }
+
+    @Override
+    public List<Owner> findAllByDateDeliveryBetweenBeginAndEndTestPeriod() {
+        return ownerRepository.findAllByDateDeliveryBetweenBeginAndEndTestPeriod();
     }
 }
