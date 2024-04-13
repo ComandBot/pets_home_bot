@@ -11,7 +11,9 @@ import ru.skypro.pets_home_bot.api_bot.service.*;
 import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
 import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.*;
 
@@ -66,10 +68,12 @@ public class ShowOrderExecute implements ExecuteMessage {
         if (ownerOptional.isEmpty()) {
             return new SendMessage(chatId, "Заявка удалена");
         }
-        Contact contact = contactService.findByPetUser(petUser);
+        List<Contact> contacts = contactService.findAllByPetUser(petUser);
         String contactInfo = "Контактная информация отсутствует";
-        if (contact != null) {
-            contactInfo = contact.getPhoneNumber();
+        if (contacts != null) {
+            contactInfo = contacts.stream()
+                    .map(Contact::getPhoneNumber)
+                    .collect(Collectors.joining("\n"));
         }
         Optional<AvatarPet> avatarPetOptional = avatarPetService.findAvatarPetByPetId(args[1]);
         String petInfo = "Описание животного отсутствует";

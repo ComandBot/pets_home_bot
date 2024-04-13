@@ -48,7 +48,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Optional<Owner> findByPetUserIdAndPetId(int petUserId, int petId) {
-        return ownerRepository.findByPetUserIdAndPetId(petId, petUserId);
+        return ownerRepository.findByPetUserIdAndPetId(petUserId, petId);
     }
 
     @Override
@@ -74,5 +74,15 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public List<Owner> findAllByDateDeliveryBetweenBeginAndEndTestPeriod() {
         return ownerRepository.findAllByDateDeliveryBetweenBeginAndEndTestPeriod();
+    }
+
+    @Override
+    public List<Owner> findAllByDateDeliveryMoreEndTestPeriod() {
+        return ownerRepository.findAllByDateDeliveryMoreEndTestPeriod();
+    }
+
+    @Override
+    public List<Owner> getOwnersAfterTwoDaysReport() {
+        return ownerRepository.getOwnersAfterTwoDaysReport();
     }
 }

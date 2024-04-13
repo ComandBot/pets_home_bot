@@ -1,5 +1,6 @@
 package ru.skypro.pets_home_bot.api_bot.service;
 
+import ru.skypro.pets_home_bot.api_bot.model.Owner;
 import ru.skypro.pets_home_bot.api_bot.model.Report;
 import ru.skypro.pets_home_bot.api_bot.projections.ReportIdDate;
 
@@ -13,4 +14,8 @@ public interface ReportService {
     List<ReportIdDate> findAllByIsViewedFalseProjection();
 
     Optional<Report> findById(int id);
+
+    List<ReportIdDate> findAllByPetUserIdAndPetId(int petUserId, int petId);
+
+    void deleteAllByOwner(Owner owner);
 }

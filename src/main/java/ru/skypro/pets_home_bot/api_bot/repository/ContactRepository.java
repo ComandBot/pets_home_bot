@@ -6,6 +6,10 @@ import ru.skypro.pets_home_bot.api_bot.model.Owner;
 import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 
+import java.util.List;
+
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
     Contact findByPetUser(PetUser petUser);
+
+    List<Contact> findAllByPetUser(PetUser petUser);
 }

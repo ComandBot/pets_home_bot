@@ -57,4 +57,8 @@ public interface OwnerService {
 
     List<Owner> findAllByDateDeliveryBetweenBeginAndEndTestPeriod();
 
+    List<Owner> findAllByDateDeliveryMoreEndTestPeriod();
+
+    List<Owner> getOwnersAfterTwoDaysReport();
+
 }

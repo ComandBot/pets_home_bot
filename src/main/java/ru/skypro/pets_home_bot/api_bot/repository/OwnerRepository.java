@@ -34,4 +34,11 @@ public interface OwnerRepository extends JpaRepository<Owner, OwnerId> {
             nativeQuery = true)
     List<Owner> findAllByDateDeliveryMoreEndTestPeriod();
     void deleteByOwnerId(OwnerId ownerId);
+
+    @Query(value = "select * from owners\n" +
+            "where (pet_user_id, pet_id) in (select pet_user_id, pet_id from reports\n" +
+            "                                GROUP BY pet_user_id, pet_id\n" +
+            "                                HAVING now() > max(date_report) + interval '2 day')",
+            nativeQuery = true)
+    List<Owner> getOwnersAfterTwoDaysReport();
 }

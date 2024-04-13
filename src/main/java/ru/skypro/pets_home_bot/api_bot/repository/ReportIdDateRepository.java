@@ -13,4 +13,9 @@ public interface ReportIdDateRepository extends JpaRepository<Report, Integer> {
     @Query(value = "select r.id as id, r.date_report as dateReport from reports r where NOT r.is_viewed"
             , nativeQuery = true)
     List<ReportIdDate> findAllByViewedIsFalse();
+
+    @Query(value = "select r.id as id, r.date_report as dateReport from reports r " +
+            "where r.pet_user_id = ?1 and r.pet_id = ?2"
+            , nativeQuery = true)
+    List<ReportIdDate> findAllByPetUserIdAndPetId(int petUserId, int petId);
 }

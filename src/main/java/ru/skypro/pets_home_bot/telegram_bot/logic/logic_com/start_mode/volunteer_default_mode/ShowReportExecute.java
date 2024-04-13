@@ -15,7 +15,9 @@ import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
 import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.*;
 
@@ -23,6 +25,7 @@ import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.*;
 public class ShowReportExecute implements ExecuteMessage {
     private final String template = """
             Отчет от пользователя на дату %s
+            Статус отчета: %s
             Контактная информация пользователя:
             %s
             -----------------
@@ -60,16 +63,19 @@ public class ShowReportExecute implements ExecuteMessage {
             return new SendMessage(chatId, "Отчет удален");
         }
         Report report = reportOptional.get();
+        String status = "не просмотрен";
         if (report.isViewed()) {
-            return new SendMessage(chatId, "Отчет уже просмотрен");
+            status = "просмотрен";
         }
         PetUser petUser = report.getOwner().getOwnerId().getPetUser();
-        Contact contact = contactService.findByPetUser(petUser);
+        List<Contact> contacts = contactService.findAllByPetUser(petUser);
         String textContact = "Контактная информация не обнаружена";
-        if (contact != null) {
-            textContact = contact.getPhoneNumber();
+        if (contacts != null && !contacts.isEmpty()) {
+            textContact = contacts.stream()
+                    .map(Contact::getPhoneNumber)
+                    .collect(Collectors.joining("\n"));
         }
-        String answer = String.format(template, report.getDateReport().format(DateTimeFormatter.ISO_DATE),
+        String answer = String.format(template, report.getDateReport().format(DateTimeFormatter.ISO_DATE), status,
                 textContact, report.getDiet(), report.getCondition(), report.getBehaviour(),
                 parseUtil.tempParse(VIEWED_REPORT_ID_NUM, report.getId()),
                 parseUtil.tempParse(MESSAGE_USER_ID_NUM, petUser.getId()));

@@ -70,4 +70,10 @@ public class Link {
 
     public static final String OWNERS_END = "/ownersend";
     public static final String OWNERS_CUR = "/ownerscur";
+
+    public static final String OWNER_END_USER_PET_NUM_NUM = "/ownerend_num_num";
+    public static final String INCREASE_FOURTEEN_NUM_NUM = "/increasefourteen_num_num";
+    public static final String INCREASE_THIRTY_NUM_NUM = "/increasethirty_num_num";
+    public static final String AGREEMENT_NUM_NUM = "/agreement_num_num";
+    public static final String SEIZE_NUM_NUM = "/seize_num_num";
 }
