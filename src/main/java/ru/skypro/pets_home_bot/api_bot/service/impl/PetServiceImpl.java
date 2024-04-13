@@ -12,7 +12,6 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class PetServiceImpl implements PetService {
 private final PetRepository petRepository;
 
@@ -31,8 +30,8 @@ private final PetRepository petRepository;
     }
 
     @Override
-    public void deletePet(Integer id) {
-        petRepository.deleteById(id);
+    public void deleteById(int petId) {
+        petRepository.deleteById(petId);
     }
 
     @Override

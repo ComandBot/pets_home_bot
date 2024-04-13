@@ -2,8 +2,12 @@ package ru.skypro.pets_home_bot.api_bot.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.skypro.pets_home_bot.api_bot.model.Contact;
+import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.repository.ContactRepository;
 import ru.skypro.pets_home_bot.api_bot.service.ContactService;
+
+import java.util.List;
+
 @Service
 public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
@@ -15,5 +19,15 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public Contact add(Contact contact) {
         return contactRepository.save(contact);
+    }
+
+    @Override
+    public Contact findByPetUser(PetUser petUser) {
+        return contactRepository.findByPetUser(petUser);
+    }
+
+    @Override
+    public List<Contact> findAllByPetUser(PetUser petUser) {
+        return contactRepository.findAllByPetUser(petUser);
     }
 }

@@ -32,11 +32,6 @@ public class ExitCommunicationPetUserExecute implements ExecuteMessage {
         }
         petUser.setMessageMode(MessageMode.DEFAULT);
         petUserService.add(petUser);
-        Volunteer volunteer = volunteerService.findByWorkUserId(petUser);
-        if (volunteer != null) {
-            volunteer.setWorkUserId(null);
-            volunteerService.add(volunteer);
-        }
         return new SendMessage(chatId, "Вы вышли из режима общения с волонтером");
     }
 

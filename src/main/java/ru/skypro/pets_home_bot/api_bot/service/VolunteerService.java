@@ -3,6 +3,8 @@ package ru.skypro.pets_home_bot.api_bot.service;
 import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.model.Volunteer;
 
+import java.util.List;
+
 public interface VolunteerService {
 
     /**
@@ -40,4 +42,6 @@ public interface VolunteerService {
     Volunteer findFirstByWorkUserIdIsNull();
 
     Volunteer findByWorkUserId(PetUser petUser);
+
+    List<Volunteer> getAll();
 }

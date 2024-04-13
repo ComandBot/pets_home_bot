@@ -20,4 +20,6 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
     nativeQuery = true)
     List<Pet> findByReportPetsList(int petUserId);
     Collection<Pet> findByName(String name);
+
+    void deleteById(int petId);
 }

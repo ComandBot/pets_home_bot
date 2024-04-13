@@ -23,9 +23,8 @@ public interface PetService {
 
     /**
      * метод для удалении питомца из базы по id
-     * @param pet
      */
-    void deletePet(Integer pet);
+    void deleteById(int petId);
 
     List<Pet> findPetsByShelterId(int shelterId);
 

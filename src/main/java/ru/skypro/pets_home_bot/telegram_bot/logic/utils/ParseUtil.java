@@ -13,7 +13,6 @@ public class ParseUtil {
     private final String num2 = "num2";
     private final String regex = "\\d+";
     private final String regexPhone = "^\\+7\\-9\\d{2}\\-\\d{3}\\-\\d{2}\\-\\d{2}$";
-    private static final String phoneRegex = "";
     public String parseLink(String link) {
         return link.replaceAll(regex, num);
     }
@@ -23,12 +22,12 @@ public class ParseUtil {
     }
 
     public String tempParseTwoNum(String template, int petUserId, int petId) {
-        return template.replaceAll("num1", String.valueOf(petUserId))
-                .replaceAll("num2", String.valueOf(petId));
+        return template.replaceFirst(num, String.valueOf(petUserId))
+                .replaceFirst(num, String.valueOf(petId));
     }
 
     public String parseTwoLink(String link) {
-        return link.replaceFirst(regex, num1).replaceFirst(regex, num2);
+        return link.replaceFirst(regex, num).replaceFirst(regex, num);
     }
 
     public int getIdLink(String link) {

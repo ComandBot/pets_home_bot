@@ -14,7 +14,7 @@ import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
 import java.util.Optional;
 
 import static ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link.AVATAR_PHOTO_PET_ID_NUM;
-@Component
+
 public class PetPhotoExecute implements ExecuteMessage {
 
     private final ParseUtil parseUtil;

@@ -48,4 +48,9 @@ public class AvatarPetServiceImpl implements AvatarPetService {
         }
         return Optional.of(avatarPet);
     }
+
+    @Override
+    public void deleteByPet(Pet pet) {
+        avatarPetRepository.deleteByPet(pet);
+    }
 }

@@ -40,7 +40,10 @@ public class HelpExecute implements ExecuteMessage {
 
         Volunteer volunteer = volunteerService.findFirstByWorkUserIdIsNull();
         if (volunteer == null)  {
-            return new SendMessage(chatId, "Свободные волнтеры отсутствуют");
+            volunteer = volunteerService.findByWorkUserId(petUser);
+        }
+        if (volunteer == null) {
+            return new SendMessage(chatId, "Свободные волонтеры отсутствуют");
         }
         petUser.setMessageMode(MessageMode.COMMUNICATION_USER);
         petUserService.add(petUser);

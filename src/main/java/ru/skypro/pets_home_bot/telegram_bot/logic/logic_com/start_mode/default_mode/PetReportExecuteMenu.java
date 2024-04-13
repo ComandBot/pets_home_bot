@@ -53,7 +53,7 @@ public class PetReportExecuteMenu implements ExecuteMessage {
         }
         String link = update.message().text();
         int petId = parseUtil.getIdLink(link);
-        Optional<Owner> ownerOptional = ownerService.findByPetIdAndPetUserId(petUser.getId(), petId);
+        Optional<Owner> ownerOptional = ownerService.findByPetUserIdAndPetId(petUser.getId(), petId);
         if (ownerOptional.isEmpty()) {
             return new SendMessage(chatId, "Владелец животного не обнаружен");
         }
