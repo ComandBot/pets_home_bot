@@ -59,7 +59,6 @@
             <artifactId>java-telegram-bot-api</artifactId>
             <version>5.7.0</version>
         </dependency>
-
     </dependencies>
 
     <build>
