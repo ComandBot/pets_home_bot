@@ -25,4 +25,19 @@ public class ConsultationServiceImpl implements ConsultationService {
     public Optional<Consultation> findConsultationById(int consultationId) {
         return consultationRepository.findById(consultationId);
     }
+
+    @Override
+    public Consultation add(Consultation consultation) {
+        return consultationRepository.save(consultation);
+    }
+
+    @Override
+    public List<Consultation> findAll() {
+        return consultationRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(int id) {
+         consultationRepository.deleteById(id);
+    }
 }

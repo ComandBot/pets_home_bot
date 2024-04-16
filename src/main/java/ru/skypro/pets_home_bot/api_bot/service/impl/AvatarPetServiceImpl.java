@@ -9,6 +9,7 @@ import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
 import ru.skypro.pets_home_bot.api_bot.repository.PetUserRepository;
 import ru.skypro.pets_home_bot.api_bot.service.AvatarPetService;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -52,5 +53,15 @@ public class AvatarPetServiceImpl implements AvatarPetService {
     @Override
     public void deleteByPet(Pet pet) {
         avatarPetRepository.deleteByPet(pet);
+    }
+
+    @Override
+    public AvatarPet add(AvatarPet avatarPet) {
+        return avatarPetRepository.save(avatarPet);
+    }
+
+    @Override
+    public List<AvatarPet> getAvatarsPets() {
+        return avatarPetRepository.findAll();
     }
 }

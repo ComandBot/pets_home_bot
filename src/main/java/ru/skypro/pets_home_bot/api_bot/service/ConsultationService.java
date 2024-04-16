@@ -8,4 +8,8 @@ import java.util.Optional;
 public interface ConsultationService {
     List<Consultation> findConsultationsByShelterId(int shelterId);
     Optional<Consultation> findConsultationById(int consultationId);
+    Consultation add(Consultation consultation);
+    List<Consultation> findAll();
+
+    void deleteById(int id);
 }
