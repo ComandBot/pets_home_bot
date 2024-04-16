@@ -39,6 +39,13 @@ public class ShelterInfoController {
         return ResponseEntity.ok(shelterInfoService.findAll());
     }
 
+    @GetMapping(value = "/find/{id}")
+    ResponseEntity<ShelterInfo> findById(@PathVariable int id) {
+        Optional<ShelterInfo> shelterInfoOptional = shelterInfoService.findById(id);
+        return shelterInfoOptional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping(value = "/delete/{id}")
     ResponseEntity<ShelterInfo> deleteById(@PathVariable int id) {
         if (shelterInfoService.findById(id).isEmpty()) {

@@ -30,4 +30,8 @@ public class Shelter {
     @JsonIgnore
     @OneToMany(mappedBy = "shelter", fetch = FetchType.LAZY)
     Collection<ShelterInfo> shelterInfos;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "shelter", fetch = FetchType.LAZY)
+    Collection<Consultation> consultations;
 }
