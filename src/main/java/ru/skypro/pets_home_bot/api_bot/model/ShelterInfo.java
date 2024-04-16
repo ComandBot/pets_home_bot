@@ -1,5 +1,6 @@
 package ru.skypro.pets_home_bot.api_bot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 

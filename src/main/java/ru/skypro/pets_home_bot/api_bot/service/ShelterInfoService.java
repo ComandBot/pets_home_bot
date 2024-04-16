@@ -14,4 +14,8 @@ public interface ShelterInfoService {
     ShelterInfo save(ShelterInfo shelterInfo);
 
     List<ShelterInfo> findAllByShelterPetsTypes(PetsTypes petsTypes);
+
+    List<ShelterInfo> findAll();
+
+    void deleteById(int id);
 }

@@ -1,16 +1,13 @@
 package ru.skypro.pets_home_bot.api_bot.controller;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ru.skypro.pets_home_bot.api_bot.model.Shelter;
 import ru.skypro.pets_home_bot.api_bot.model.ShelterInfo;
-import ru.skypro.pets_home_bot.api_bot.model_api.ShelterInfoApi;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterInfoService;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,13 +22,37 @@ public class ShelterInfoController {
         this.shelterService = shelterService;
     }
 
-    @PostMapping(value = "/addApi")
-    ShelterInfoApi save(@RequestBody ShelterInfoApi shelterInfoApi) {
-        return shelterInfoApi;
+    @PostMapping(value = "/addInfo/{shelterId}")
+    ResponseEntity<ShelterInfo> save(@RequestBody ShelterInfo shelterInfo, @PathVariable int shelterId) {
+        Optional<Shelter> optionalShelter = shelterService.findByShelterId(shelterId);
+        if (optionalShelter.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        Shelter shelter = optionalShelter.get();
+        shelterInfo.setShelter(shelter);
+        shelterInfoService.save(shelterInfo);
+        return ResponseEntity.ok(shelterInfo);
     }
 
-    @PostMapping(value = "/addInfo")
-    ShelterInfo save(@RequestBody ShelterInfo shelterInfo) {
-        return shelterInfo;
+    @GetMapping(value = "/all")
+    ResponseEntity<List<ShelterInfo>> findAll() {
+        return ResponseEntity.ok(shelterInfoService.findAll());
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    ResponseEntity<ShelterInfo> deleteById(@PathVariable int id) {
+        if (shelterInfoService.findById(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        shelterInfoService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping(value = "/edit")
+    ResponseEntity<ShelterInfo> editShelterInfo(@RequestBody ShelterInfo shelterInfo) {
+        if (shelterInfoService.findById(shelterInfo.getId()).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(shelterInfoService.save(shelterInfo));
     }
 }

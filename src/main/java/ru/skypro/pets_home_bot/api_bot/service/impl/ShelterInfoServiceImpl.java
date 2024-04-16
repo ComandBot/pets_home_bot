@@ -37,4 +37,14 @@ public class ShelterInfoServiceImpl implements ShelterInfoService {
     public List<ShelterInfo> findAllByShelterPetsTypes(PetsTypes petsTypes) {
         return shelterInfoRepository.findAllByShelter_PetsTypes(petsTypes);
     }
+
+    @Override
+    public List<ShelterInfo> findAll() {
+        return shelterInfoRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(int id) {
+        shelterInfoRepository.deleteById(id);
+    }
 }
