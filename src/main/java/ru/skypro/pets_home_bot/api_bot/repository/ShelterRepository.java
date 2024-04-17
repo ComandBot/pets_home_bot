@@ -11,4 +11,6 @@ public interface ShelterRepository extends JpaRepository<Shelter, Integer> {
     List<Shelter> findSheltersByPetsTypes(PetsTypes petsTypes);
 
     Optional<Shelter> findById(int id);
+
+    void deleteById(int id);
 }

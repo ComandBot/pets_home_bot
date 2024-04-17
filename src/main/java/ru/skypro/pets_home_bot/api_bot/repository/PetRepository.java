@@ -19,7 +19,7 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
             "                           where pet_user_id = ?1 and date_delivery is not null)",
     nativeQuery = true)
     List<Pet> findByReportPetsList(int petUserId);
-    Collection<Pet> findByName(String name);
+    Pet findByName(String name);
 
     void deleteById(int petId);
 }

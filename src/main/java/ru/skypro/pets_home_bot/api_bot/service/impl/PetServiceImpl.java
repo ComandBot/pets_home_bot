@@ -40,7 +40,7 @@ private final PetRepository petRepository;
     }
 
     @Override
-    public Collection<Pet> findByName(String name) {
+    public Pet findByName(String name) {
         return petRepository.findByName(name);
     }
 

@@ -34,7 +34,7 @@ public class PetController {
         Optional<Pet> petOption = petService.findById(id);
         return petOption.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
-    /*
+
     @Operation(
             summary = "поиск питомца по имени",
             responses = {
@@ -44,13 +44,13 @@ public class PetController {
                     )
             })
     @GetMapping("{name}")
-    public ResponseEntity<Collection<Pet>> getPetName(@RequestBody String name) {
+    public ResponseEntity<Pet> getPetName(@RequestBody String name) {
 
-        Pet pet = (Pet) petService.findByName(name);
+        Pet pet = petService.findByName(name);
         if (pet == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(Collections.emptyList());
+        return ResponseEntity.ok(pet);
     }
 
     @Operation(
@@ -90,8 +90,12 @@ public class PetController {
                     )
             })
     @DeleteMapping("{id}")
-    public ResponseEntity deletePet(@PathVariable int id) {
-        petService.deletePet(id);
-        return ResponseEntity.ok().build();
-    }*/
+    public ResponseEntity<Pet> deletePet(@PathVariable int id) {
+        Optional<Pet> petOptional = petService.findById(id);
+        if (petOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        petService.deleteById(id);
+        return ResponseEntity.ok(petOptional.get());
+    }
 }

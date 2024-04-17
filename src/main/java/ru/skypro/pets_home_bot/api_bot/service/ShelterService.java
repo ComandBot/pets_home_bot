@@ -11,4 +11,10 @@ public interface ShelterService {
     List<Shelter> findByDogShelters();
 
     Optional<Shelter> findByShelterId(int id);
+
+    Shelter add(Shelter shelter);
+
+    List<Shelter> findAll();
+
+    void deleteById(int id);
 }
