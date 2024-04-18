@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("pet")
+@RequestMapping("/pet")
 public class PetController {
     private final PetService petService;
 
@@ -43,7 +43,7 @@ public class PetController {
                             description = "найден питомец по имени"
                     )
             })
-    @GetMapping("{name}")
+    @GetMapping("/name/{name}")
     public ResponseEntity<Pet> getPetName(@RequestBody String name) {
 
         Pet pet = petService.findByName(name);
@@ -62,8 +62,8 @@ public class PetController {
                     )
             })
     @PostMapping
-    public Pet createPet(@RequestBody Pet pet) {
-        return petService.addPet(pet);
+    public ResponseEntity<Pet> createPet(@RequestBody Pet pet) {
+        return ResponseEntity.ok(petService.addPet(pet));
     }
 
     @Operation(
@@ -71,13 +71,13 @@ public class PetController {
                     description = "обновление информации"
             )
     )
-    @PutMapping("{id}")
-    public ResponseEntity<Pet> updatePet(@RequestBody Pet pet, @PathVariable int id) {
-        Pet foundPet = petService.updatePet(pet);
-        if (foundPet == null) {
-            return ResponseEntity.badRequest().build();
+    @PutMapping
+    public ResponseEntity<Pet> updatePet(@RequestBody Pet pet) {
+        Optional<Pet> optionalPet = petService.findById(pet.getId());
+        if (optionalPet.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(foundPet);
+        return ResponseEntity.ok(petService.addPet(pet));
 
     }
 
