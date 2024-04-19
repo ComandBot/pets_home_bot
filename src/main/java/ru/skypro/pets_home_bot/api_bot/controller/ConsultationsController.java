@@ -1,5 +1,7 @@
 package ru.skypro.pets_home_bot.api_bot.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.pets_home_bot.api_bot.model.Consultation;
@@ -18,11 +20,27 @@ public class ConsultationsController {
         this.consultationService = consultationService;
     }
 
+    @Operation(
+            summary = "Внесение консультации в базу данных",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Консультация добавлена"
+                    )
+            })
     @PostMapping(value = "/add")
     ResponseEntity<Consultation> add(@RequestBody Consultation consultation) {
         return ResponseEntity.ok(consultationService.add(consultation));
     }
 
+    @Operation(
+            summary = "Поиск консультации по id",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Консультация найдена"
+                    )
+            })
     @GetMapping(value = "/find/{id}")
     ResponseEntity<Consultation> findById(@PathVariable int id) {
         Optional<Consultation> optionalConsultation = consultationService.findConsultationById(id);
@@ -30,6 +48,14 @@ public class ConsultationsController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @Operation(
+            summary = "Поиск всех консультаций",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Список всех консультаций"
+                    )
+            })
     @GetMapping(value = "/all")
     ResponseEntity<List<Consultation>> findAll() {
         List<Consultation> consultations = consultationService.findAll();
@@ -39,6 +65,14 @@ public class ConsultationsController {
         return ResponseEntity.ok(consultations);
     }
 
+    @Operation(
+            summary = "Изменение консультации",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Консультация изменена"
+                    )
+            })
     @PutMapping(value = "/edit")
     ResponseEntity<Consultation> editConsultation(@RequestBody Consultation consultation) {
         Optional<Consultation> optionalConsultation = consultationService.findConsultationById(consultation.getId());
@@ -48,6 +82,14 @@ public class ConsultationsController {
         return ResponseEntity.ok(consultationService.add(consultation));
     }
 
+    @Operation(
+            summary = "Удаление консультации",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Консультация удалена"
+                    )
+            })
     @DeleteMapping(value = "/delete/{id}")
     ResponseEntity<Consultation> deleteById(@PathVariable int id) {
         Optional<Consultation> optionalConsultation = consultationService.findConsultationById(id);
