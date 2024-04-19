@@ -31,4 +31,19 @@ public class ShelterServiceImpl implements ShelterService {
     public Optional<Shelter> findByShelterId(int id) {
         return shelterRepository.findById(id);
     }
+
+    @Override
+    public Shelter add(Shelter shelter) {
+        return shelterRepository.save(shelter);
+    }
+
+    @Override
+    public List<Shelter> findAll() {
+        return shelterRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(int id) {
+        shelterRepository.deleteById(id);
+    }
 }
