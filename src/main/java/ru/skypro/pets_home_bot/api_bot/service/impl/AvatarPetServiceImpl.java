@@ -13,7 +13,6 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class AvatarPetServiceImpl implements AvatarPetService {
     private final AvatarPetRepository avatarPetRepository;
     private final PetRepository petRepository;
@@ -23,6 +22,7 @@ public class AvatarPetServiceImpl implements AvatarPetService {
     }
 
     @Override
+    @Transactional
     public AvatarPet save(int petId, String petDescription, byte[] avatar) {
         Optional<Pet> petOptional = petRepository.findById(petId);
         if (petOptional.isEmpty()) {
@@ -37,6 +37,7 @@ public class AvatarPetServiceImpl implements AvatarPetService {
     }
 
     @Override
+    @Transactional
     public Optional<AvatarPet> findAvatarPetByPetId(int petId) {
         Optional<Pet> optionalPet = petRepository.findById(petId);
         if (optionalPet.isEmpty()) {
@@ -50,6 +51,7 @@ public class AvatarPetServiceImpl implements AvatarPetService {
     }
 
     @Override
+    @Transactional
     public void deleteByPet(Pet pet) {
         avatarPetRepository.deleteByPet(pet);
     }
