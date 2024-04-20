@@ -9,7 +9,7 @@ import ru.skypro.pets_home_bot.api_bot.service.impl.ShelterSchemeServiceImpl;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("scheme")
+@RequestMapping("/scheme")
 public class ShelterSchemeController {
 
     private final ShelterSchemeServiceImpl shelterSchemeService;
@@ -19,7 +19,7 @@ public class ShelterSchemeController {
     }
 
     @PostMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadScheme(@PathVariable int id, @RequestParam MultipartFile photo) throws IOException {
+    public ResponseEntity<?> uploadScheme(@PathVariable int id, @RequestParam MultipartFile photo) throws IOException {
         shelterSchemeService.add(id, photo.getBytes());
         return ResponseEntity.ok().build();
     }
