@@ -18,7 +18,7 @@ import java.util.Optional;
 public class AvatarPetServiceImpl implements AvatarPetService {
     private final AvatarPetRepository avatarPetRepository;
     private final PetRepository petRepository;
-    public AvatarPetServiceImpl(AvatarPetRepository avatarPetRepository, PetUserRepository petUserRepository, PetRepository petRepository) {
+    public AvatarPetServiceImpl(AvatarPetRepository avatarPetRepository, PetRepository petRepository) {
         this.avatarPetRepository = avatarPetRepository;
         this.petRepository = petRepository;
     }
