@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("avatar")
+@RequestMapping("/avatar")
 public class AvatarPetController {
     private final AvatarPetService avatarPetService;
 
@@ -21,11 +21,11 @@ public class AvatarPetController {
     }
 
     @PostMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadAvatarPet(@PathVariable int id,
+    public ResponseEntity<AvatarPet> uploadAvatarPet(@PathVariable int id,
                                                   @RequestParam MultipartFile avatar,
     @RequestParam String description) throws IOException {
-        avatarPetService.save(id, description, avatar.getBytes());
-        return ResponseEntity.ok().build();
+        AvatarPet avatarPet = avatarPetService.save(id, description, avatar.getBytes());
+        return ResponseEntity.ok(avatarPet);
     }
 
     @GetMapping("/all")

@@ -15,6 +15,7 @@ import ru.skypro.pets_home_bot.api_bot.model.Report;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 import ru.skypro.pets_home_bot.api_bot.service.ReportService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,14 +38,16 @@ public class ReportController {
         if (reports == null || reports.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        List<ReportDto> result = reports.stream()
-                .map(ReportDto::new)
-                .toList();
+        List<ReportDto> result = new ArrayList<>();
+        for (Report report : reports) {
+            ReportDto reportDto = new ReportDto(report);
+            result.add(reportDto);
+        }
         return ResponseEntity.ok(result);
     }
 
     @PutMapping(value = "/mark/{id}")
-    ResponseEntity<ReportDto> markReport(@PathVariable int id) {
+    public ResponseEntity<ReportDto> markReport(@PathVariable int id) {
         Optional<Report> reportOptional = reportService.findById(id);
         if (reportOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -57,7 +60,7 @@ public class ReportController {
     }
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<ReportDto> getReportById(@PathVariable int id) {
+    public ResponseEntity<ReportDto> getReportById(@PathVariable int id) {
         Optional<Report> reportOptional = reportService.findById(id);
         return reportOptional
                 .map(report -> ResponseEntity.ok(new ReportDto(report)))
@@ -65,7 +68,7 @@ public class ReportController {
     }
 
     @PostMapping(value = "/message")
-    ResponseEntity<Boolean> messageByPetUser(@RequestBody MessageDto messageDto) {
+    public ResponseEntity<?> messageByPetUser(@RequestBody MessageDto messageDto) {
         int petUserId = messageDto.getPetUserId();
         Optional<PetUser> petUserOptional = petUserService.findById(petUserId);
         if (petUserOptional.isEmpty()) {
@@ -73,6 +76,9 @@ public class ReportController {
         }
         long chatId = petUserOptional.get().getChatId();
         SendMessage sendMessage = new SendMessage(chatId, messageDto.getMessage());
-        return ResponseEntity.ok(telegramBot.execute(sendMessage).isOk());
+        if (!telegramBot.execute(sendMessage).isOk()) {
+            ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().build();
     }
 }

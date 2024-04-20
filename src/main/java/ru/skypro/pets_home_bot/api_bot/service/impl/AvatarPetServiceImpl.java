@@ -6,7 +6,6 @@ import ru.skypro.pets_home_bot.api_bot.model.AvatarPet;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
 import ru.skypro.pets_home_bot.api_bot.repository.AvatarPetRepository;
 import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
-import ru.skypro.pets_home_bot.api_bot.repository.PetUserRepository;
 import ru.skypro.pets_home_bot.api_bot.service.AvatarPetService;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.Optional;
 public class AvatarPetServiceImpl implements AvatarPetService {
     private final AvatarPetRepository avatarPetRepository;
     private final PetRepository petRepository;
-    public AvatarPetServiceImpl(AvatarPetRepository avatarPetRepository, PetUserRepository petUserRepository, PetRepository petRepository) {
+    public AvatarPetServiceImpl(AvatarPetRepository avatarPetRepository, PetRepository petRepository) {
         this.avatarPetRepository = avatarPetRepository;
         this.petRepository = petRepository;
     }
