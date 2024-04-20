@@ -6,7 +6,6 @@ import ru.skypro.pets_home_bot.api_bot.model.AvatarPet;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
 import ru.skypro.pets_home_bot.api_bot.repository.AvatarPetRepository;
 import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
-import ru.skypro.pets_home_bot.api_bot.repository.PetUserRepository;
 import ru.skypro.pets_home_bot.api_bot.service.AvatarPetService;
 
 import java.util.List;
