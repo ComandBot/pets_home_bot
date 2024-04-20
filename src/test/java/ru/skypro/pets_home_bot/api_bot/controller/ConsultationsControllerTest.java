@@ -19,6 +19,10 @@ import ru.skypro.pets_home_bot.api_bot.service.ConsultationService;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
 import ru.skypro.pets_home_bot.api_bot.service.impl.ConsultationServiceImpl;
 import ru.skypro.pets_home_bot.api_bot.service.impl.ShelterServiceImpl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
+import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -47,6 +51,11 @@ class ConsultationsControllerTest {
     private String typeConsultation = "Консультация";
 
     private String definition = "Бла-бла-бла";
+
+    private int consultationId2 = 2;
+    private String typeConsultation2 = "Консультация2";
+
+    private String definition2 = "Бла-бла-бла2";
 
     private int shelterId = 1;
     private String nameShelter = "Kotiki tut";
@@ -87,18 +96,100 @@ class ConsultationsControllerTest {
     }
 
     @Test
-    void findById() {
+    void findById() throws Exception {
+        Shelter shelter = new Shelter();
+        shelter.setId(shelterId);
+        shelter.setNameShelter(nameShelter);
+        shelter.setDescription(description);
+        shelter.setPetsTypes(petsTypes);
+        JSONObject consultationObject = new JSONObject();
+        consultationObject.put("id", consultationId);
+        consultationObject.put("typeConsultation", typeConsultation);
+        consultationObject.put("definition", definition);
+        consultationObject.put("shelter", shelter);
+
+        Consultation consultation = new Consultation();
+        consultation.setId(consultationId);
+        consultation.setTypeConsultation(typeConsultation);
+        consultation.setDefinition(definition);
+        consultation.setShelter(shelter);
+
+        when(consultationRepository.findById(any(Integer.class))).thenReturn(Optional.of(consultation));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/consultation/find/1")
+                        .content(consultationObject.toString())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(consultation.getId()))
+                .andExpect(jsonPath("$.typeConsultation").value(consultation.getTypeConsultation()))
+                .andExpect(jsonPath("$.definition").value(consultation.getDefinition()));
     }
 
-    @Test
-    void findAll() {
-    }
+//    @Test
+//    void findAll() throws Exception {
+//
+//        Shelter shelter = new Shelter();
+//        shelter.setId(shelterId);
+//        shelter.setNameShelter(nameShelter);
+//        shelter.setDescription(description);
+//        shelter.setPetsTypes(petsTypes);
+//
+//
+//        Consultation consultation = new Consultation();
+//        consultation.setId(consultationId);
+//        consultation.setTypeConsultation(typeConsultation);
+//        consultation.setDefinition(definition);
+//        consultation.setShelter(shelter);
+//
+//        Consultation consultation2 = new Consultation();
+//        consultation.setId(consultationId2);
+//        consultation.setTypeConsultation(typeConsultation2);
+//        consultation.setDefinition(definition2);
+//        consultation.setShelter(shelter);
+//        List<Consultation> cosultationsList = List.of(
+//                consultation, consultation2
+//        );
+//        when(consultationRepository.findAll()).thenReturn(cosultationsList);
+//
+//        mockMvc.perform(MockMvcRequestBuilders
+//                        .get("/consultation/all"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(content().json("""
+//                        [
+//                        {"id":1,"typeConsultation":"Консультация","definition":"Бла-бла-бла","shelter":"Kotiki tut"},
+//                        {"id":2,"typeConsultation":"Консультация2","definition":"Бла-бла-бла2","shelter":"Kotiki tut"}
+//                        ]"""));
+//
+//    }
 
     @Test
     void editConsultation() {
     }
 
     @Test
-    void deleteById() {
+    void deleteById() throws Exception {
+        Shelter shelter = new Shelter();
+        shelter.setId(shelterId);
+        shelter.setNameShelter(nameShelter);
+        shelter.setDescription(description);
+        shelter.setPetsTypes(petsTypes);
+
+        Consultation consultation = new Consultation();
+        consultation.setId(consultationId);
+        consultation.setTypeConsultation(typeConsultation);
+        consultation.setDefinition(definition);
+        consultation.setShelter(shelter);
+
+
+        when(consultationRepository.findById(any(Integer.class))).thenReturn(Optional.of(consultation));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/consultation/delete/" + consultationId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }
