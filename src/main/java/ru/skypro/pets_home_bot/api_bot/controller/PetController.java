@@ -27,7 +27,8 @@ public class PetController {
                             responseCode = "200",
                             description = "найден питомец по id"
                     )
-            })
+            },
+            tags = "Pet")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Pet> getPetInfo(@PathVariable int id) {
 
@@ -42,7 +43,8 @@ public class PetController {
                             responseCode = "200",
                             description = "найден питомец по имени"
                     )
-            })
+            },
+            tags = "Pet")
     @GetMapping("/name/{name}")
     public ResponseEntity<Pet> getPetName(@RequestBody String name) {
 
@@ -60,7 +62,8 @@ public class PetController {
                             responseCode = "200",
                             description = "питомец добавлен"
                     )
-            })
+            },
+            tags = "Pet")
     @PostMapping
     public ResponseEntity<Pet> createPet(@RequestBody Pet pet) {
         return ResponseEntity.ok(petService.addPet(pet));
@@ -69,7 +72,8 @@ public class PetController {
     @Operation(
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "обновление информации"
-            )
+            ),
+            tags = "Pet"
     )
     @PutMapping
     public ResponseEntity<Pet> updatePet(@RequestBody Pet pet) {
@@ -88,7 +92,8 @@ public class PetController {
                             responseCode = "200",
                             description = "питомец удален"
                     )
-            })
+            },
+            tags = "Pet")
     @DeleteMapping("{id}")
     public ResponseEntity<Pet> deletePet(@PathVariable int id) {
         Optional<Pet> petOptional = petService.findById(id);
