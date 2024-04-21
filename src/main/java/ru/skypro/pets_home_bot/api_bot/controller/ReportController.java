@@ -2,12 +2,8 @@ package ru.skypro.pets_home_bot.api_bot.controller;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SendMessage;
-import com.pengrad.telegrambot.response.SendResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.pets_home_bot.api_bot.dto.MessageDto;
@@ -16,7 +12,6 @@ import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.model.Report;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 import ru.skypro.pets_home_bot.api_bot.service.ReportService;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

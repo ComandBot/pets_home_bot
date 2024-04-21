@@ -1,37 +1,21 @@
 package ru.skypro.pets_home_bot.api_bot.controller;
 
-import com.google.gson.JsonObject;
 import net.minidev.json.JSONObject;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
-import ru.skypro.pets_home_bot.api_bot.model.Shelter;
 import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
-import ru.skypro.pets_home_bot.api_bot.service.PetService;
-import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 import ru.skypro.pets_home_bot.api_bot.service.impl.PetServiceImpl;
-
 import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

@@ -1,14 +1,10 @@
 package ru.skypro.pets_home_bot.api_bot.service.impl;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
 import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
 import ru.skypro.pets_home_bot.api_bot.service.PetService;
-
-import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service

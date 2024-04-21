@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.pets_home_bot.api_bot.model.Consultation;
 import ru.skypro.pets_home_bot.api_bot.service.ConsultationService;
-
 import java.util.List;
 import java.util.Optional;
 

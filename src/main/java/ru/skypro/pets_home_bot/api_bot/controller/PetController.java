@@ -6,9 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
 import ru.skypro.pets_home_bot.api_bot.service.PetService;
-
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 
 @RestController

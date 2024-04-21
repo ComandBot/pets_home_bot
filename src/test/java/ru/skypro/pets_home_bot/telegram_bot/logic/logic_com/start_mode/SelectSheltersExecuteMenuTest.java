@@ -14,17 +14,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.quality.Strictness;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.util.ReflectionTestUtils;
 import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
-import ru.skypro.pets_home_bot.api_bot.service.impl.PetUserServiceImpl;
 import ru.skypro.pets_home_bot.telegram_bot.logic.constants.Link;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

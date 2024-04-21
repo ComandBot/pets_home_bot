@@ -4,10 +4,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import ru.skypro.pets_home_bot.api_bot.model.Shelter;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
-
 import java.util.List;
 import java.util.Optional;
 
