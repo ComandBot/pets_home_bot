@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import ru.skypro.pets_home_bot.api_bot.model.Consultation;
 import ru.skypro.pets_home_bot.api_bot.repository.ConsultationRepository;
 import ru.skypro.pets_home_bot.api_bot.service.ConsultationService;
-
 import java.util.List;
 import java.util.Optional;
 

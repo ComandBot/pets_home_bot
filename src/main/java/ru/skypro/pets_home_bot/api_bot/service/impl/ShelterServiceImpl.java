@@ -5,7 +5,6 @@ import ru.skypro.pets_home_bot.api_bot.enums.PetsTypes;
 import ru.skypro.pets_home_bot.api_bot.model.Shelter;
 import ru.skypro.pets_home_bot.api_bot.repository.ShelterRepository;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
-
 import java.util.List;
 import java.util.Optional;
 

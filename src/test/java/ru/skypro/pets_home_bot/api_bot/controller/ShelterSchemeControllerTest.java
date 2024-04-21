@@ -18,14 +18,11 @@ import ru.skypro.pets_home_bot.api_bot.repository.ShelterSchemeRepository;
 import ru.skypro.pets_home_bot.api_bot.service.impl.ShelterSchemeServiceImpl;
 import ru.skypro.pets_home_bot.api_bot.service.impl.ShelterServiceImpl;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = ShelterSchemeController.class)

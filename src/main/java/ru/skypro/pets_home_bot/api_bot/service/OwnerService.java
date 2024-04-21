@@ -2,12 +2,14 @@ package ru.skypro.pets_home_bot.api_bot.service;
 
 import ru.skypro.pets_home_bot.api_bot.model.Owner;
 import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
-
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Сервис по работе с владельцами животных
+ */
 public interface OwnerService {
+
     /**
      * Добавление владельца питомца на испытательный срок. Испытательный срок определяется от текущей даты усыновления.
      * @param owner - в качестве параметра принимает ссылку на владельца
@@ -16,49 +18,62 @@ public interface OwnerService {
     Owner addOwner(Owner owner);
 
     /**
-     * Метод отвечающий за увеличение испытательного срока владельца
-     * @param ownerId - id владельца представляющий из себя составной ключ из id животного и id усыновителя
-     * @param days - количество дополнительных дней к испытательному сроку
-     * @return - возвращает отредактированного владельца или null, если таковой не был найден
+     * Поиск владельца по его id
+     * @param ownerId - id владельца
+     * @return - опционал найденного владельца
      */
-    Owner extensionOfTestPeriod(OwnerId ownerId, int days);
-
-    /**
-     * Удаление владелца из базы в случае пройденного им испытательного срока.
-     * Удаляем владельца из таблицы owners, усыновленное животное из таблицы pets, а также все лтчеты,
-     * т.к. владелец прошел
-     * испытательный срок и является полноценным хозяевом, а следовательно учитывать животное в приюте и отчеты
-     * не имеетсмысла
-     * @param ownerId - id владельца представляющий из себя составной ключ из id животного и id усыновителя
-     * @return возвращает удаленного владельца или null, если владелец не был найден
-     */
-    Owner deleteOwnerIfTestPeriodPassed(OwnerId ownerId);
-
-
-    /**
-     * Изымаем животное у владельца, удаляя его, а также нужно удалить все отчеты связанные с владельцем.
-     * Животное остается зарегестрированным в приюте и его могут
-     * усыновить другие усыновители.
-     * @param ownerId - id владельца представляющий из себя составной ключ из id животного и id усыновителя
-     * @return возвращает удаленного владельца или null, если владелец не был найден
-     */
-    Owner deleteOwnerIfTestPeriodNotPassed(OwnerId ownerId);
-
     Optional<Owner> findByOwnerId(OwnerId ownerId);
 
+    /**
+     * Поиск владельца по id усыновителя и id животного
+     * @param petUserId - id усыновителя
+     * @param petId - id животного
+     * @return - опционал найденного владельца
+     */
     Optional<Owner> findByPetUserIdAndPetId(int petUserId, int petId);
 
+    /**
+     * Поиск всех владельцев у которых дата усыновления {@code null}, т. е. заявки
+     * @return - список всех владельцев (заявок)
+     */
     List<Owner> findAllByDateDeliveryIsNull();
 
+    /**
+     * Получение владельца по id усыновителя и id животного, где дата усыновления {@code null}
+     * @param petUserId - id усыновителя
+     * @param petId - id животного
+     * @return - опционал владельца
+     */
     Optional<Owner> findByPetIdAndPetUserIdWhereDateNull(int petUserId, int petId);
+
+    /**
+     * Сохранение владельца в базу данных
+     * @param owner - сохраняемый владелец
+     */
     void save(Owner owner);
 
+    /**
+     * Удаление владельца из базы данных по его id
+     * @param ownerId - id владельца
+     */
     void deleteByOwnerId(OwnerId ownerId);
 
+    /**
+     * Получение списка владельцев нходящихся на испытательном сроке
+     * @return - список владельцев
+     */
     List<Owner> findAllByDateDeliveryBetweenBeginAndEndTestPeriod();
 
+    /**
+     * Получение списков владельцев, чей испытательный срок завершен
+     * @return - список владельцев
+     */
     List<Owner> findAllByDateDeliveryMoreEndTestPeriod();
 
+    /**
+     * Получение списка владельцев просрочивших отправку отчета на два дня
+     * @return - список владельцев
+     */
     List<Owner> getOwnersAfterTwoDaysReport();
 
 }

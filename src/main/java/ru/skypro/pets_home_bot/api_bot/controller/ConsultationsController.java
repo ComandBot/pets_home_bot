@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.pets_home_bot.api_bot.model.Consultation;
 import ru.skypro.pets_home_bot.api_bot.service.ConsultationService;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +26,8 @@ public class ConsultationsController {
                             responseCode = "200",
                             description = "Консультация добавлена"
                     )
-            })
+            },
+            tags = "Consultation")
     @PostMapping(value = "/add")
     ResponseEntity<Consultation> add(@RequestBody Consultation consultation) {
         return ResponseEntity.ok(consultationService.add(consultation));
@@ -40,7 +40,8 @@ public class ConsultationsController {
                             responseCode = "200",
                             description = "Консультация найдена"
                     )
-            })
+            },
+            tags = "Consultation")
     @GetMapping(value = "/find/{id}")
     ResponseEntity<Consultation> findById(@PathVariable int id) {
         Optional<Consultation> optionalConsultation = consultationService.findConsultationById(id);
@@ -55,7 +56,8 @@ public class ConsultationsController {
                             responseCode = "200",
                             description = "Список всех консультаций"
                     )
-            })
+            },
+            tags = "Consultation")
     @GetMapping(value = "/all")
     ResponseEntity<List<Consultation>> findAll() {
         List<Consultation> consultations = consultationService.findAll();
@@ -72,7 +74,8 @@ public class ConsultationsController {
                             responseCode = "200",
                             description = "Консультация изменена"
                     )
-            })
+            },
+            tags = "Consultation")
     @PutMapping(value = "/edit")
     ResponseEntity<Consultation> editConsultation(@RequestBody Consultation consultation) {
         Optional<Consultation> optionalConsultation = consultationService.findConsultationById(consultation.getId());
@@ -89,7 +92,8 @@ public class ConsultationsController {
                             responseCode = "200",
                             description = "Консультация удалена"
                     )
-            })
+            },
+            tags = "Consultation")
     @DeleteMapping(value = "/delete/{id}")
     ResponseEntity<Consultation> deleteById(@PathVariable int id) {
         Optional<Consultation> optionalConsultation = consultationService.findConsultationById(id);

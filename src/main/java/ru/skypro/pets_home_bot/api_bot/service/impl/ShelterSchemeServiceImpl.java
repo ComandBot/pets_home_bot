@@ -7,8 +7,8 @@ import ru.skypro.pets_home_bot.api_bot.model.ShelterScheme;
 import ru.skypro.pets_home_bot.api_bot.repository.ShelterSchemeRepository;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterSchemeService;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
-
 import java.util.Optional;
+
 @Service
 @Transactional
 public class ShelterSchemeServiceImpl implements ShelterSchemeService {

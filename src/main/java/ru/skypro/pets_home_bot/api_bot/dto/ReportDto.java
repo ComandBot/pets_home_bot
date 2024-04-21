@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.skypro.pets_home_bot.api_bot.model.Owner;
 import ru.skypro.pets_home_bot.api_bot.model.Report;
-
 import java.time.LocalDateTime;
 
 @Data

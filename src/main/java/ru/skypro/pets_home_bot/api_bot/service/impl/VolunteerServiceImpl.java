@@ -5,7 +5,6 @@ import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.model.Volunteer;
 import ru.skypro.pets_home_bot.api_bot.repository.VolunteerRepository;
 import ru.skypro.pets_home_bot.api_bot.service.VolunteerService;
-
 import java.util.List;
 
 @Service
@@ -25,16 +24,6 @@ public class VolunteerServiceImpl implements VolunteerService {
     @Override
     public void delete(int volunteerId) {
         volunteerRepository.deleteById(volunteerId);
-    }
-
-    @Override
-    public Volunteer setWorkPetUser(int volunteerId, PetUser petUser) {
-        return null;
-    }
-
-    @Override
-    public Volunteer removeWorkPetUser(int volunteerId) {
-        return null;
     }
 
     @Override

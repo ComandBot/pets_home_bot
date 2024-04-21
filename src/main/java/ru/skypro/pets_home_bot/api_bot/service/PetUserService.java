@@ -26,5 +26,10 @@ public interface PetUserService {
      */
     PetUser findByChatIdPetUser(long chatIdPetUser);
 
+    /**
+     * Получение опционала пользователя по его id
+     * @param id - id усыновителя
+     * @return - опционал пользователя
+     */
     Optional<PetUser> findById(int id);
 }

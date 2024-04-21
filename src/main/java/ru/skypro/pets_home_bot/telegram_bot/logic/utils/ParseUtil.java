@@ -7,12 +7,10 @@ import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 
 @Component
 public class ParseUtil {
-
     private final String num = "num";
-    private final String num1 = "num1";
-    private final String num2 = "num2";
     private final String regex = "\\d+";
     private final String regexPhone = "^\\+7\\-9\\d{2}\\-\\d{3}\\-\\d{2}\\-\\d{2}$";
+
     public String parseLink(String link) {
         return link.replaceAll(regex, num);
     }
