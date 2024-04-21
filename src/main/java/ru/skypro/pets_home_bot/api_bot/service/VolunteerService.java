@@ -2,7 +2,6 @@ package ru.skypro.pets_home_bot.api_bot.service;
 
 import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.model.Volunteer;
-
 import java.util.List;
 
 public interface VolunteerService {
@@ -21,27 +20,28 @@ public interface VolunteerService {
     void delete(int volunteerId);
 
     /**
-     * При вызове волонтера усыновителем устанавливает связь с ним
-     * @param petUser - усыновитель вызывающий волонтера
-     * @param volunteerId - id волонтера с которым устанавливаем связь
-     * @return - возвращает отредактированного волонтера с полем workPetUserId не равным null,
-     * либо возвращает null если волонтер не найден
+     * Получение волонтера по chatId
+     * @param chatId - id чата волонтера
+     * @return - волонтер
      */
-    Volunteer setWorkPetUser(int volunteerId, PetUser petUser);
-
-    /**
-     * Если волонтер отработал с усыновителем, то высвобождаем волонтера
-     * @param volunteerId - id волонтера которого освобождаем
-     * @return - возвращает свободного волонтера у которого поле workPetUserId равно null
-     * либо возвращает null если волонтер не найден
-     */
-    Volunteer removeWorkPetUser(int volunteerId);
-
     Volunteer findByChatIdVolunteer(long chatId);
 
+    /**
+     * Нахождение не задействованного волонтера
+     * @return - волонтер
+     */
     Volunteer findFirstByWorkUserIdIsNull();
 
+    /**
+     * Получение волонтера общающегося с пользователем
+     * @param petUser - пользователь
+     * @return - волонтер
+     */
     Volunteer findByWorkUserId(PetUser petUser);
 
+    /**
+     * Получение всех волонтеров
+     * @return - список всех волонтеров
+     */
     List<Volunteer> getAll();
 }

@@ -27,21 +27,6 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public Owner extensionOfTestPeriod(OwnerId ownerId, int days) {
-        return null;
-    }
-
-    @Override
-    public Owner deleteOwnerIfTestPeriodPassed(OwnerId ownerId) {
-        return null;
-    }
-
-    @Override
-    public Owner deleteOwnerIfTestPeriodNotPassed(OwnerId ownerId) {
-        return null;
-    }
-
-    @Override
     public Optional<Owner> findByOwnerId(OwnerId ownerId) {
         return ownerRepository.findByOwnerId(ownerId);
     }
