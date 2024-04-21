@@ -3,9 +3,7 @@ package ru.skypro.pets_home_bot.api_bot.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import ru.skypro.pets_home_bot.api_bot.model.Owner;
-import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.model.Report;
-
 import java.util.List;
 
 public interface ReportRepository extends JpaRepository<Report, Integer> {
