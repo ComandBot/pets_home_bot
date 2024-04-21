@@ -8,7 +8,6 @@ import ru.skypro.pets_home_bot.telegram_bot.logic.service.impl.SenderMessageServ
 import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
 import java.util.List;
 
-
 @Service
 @Slf4j
 public class SenderMessageServiceImpl extends SenderMessageServiceAbstract {

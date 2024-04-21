@@ -5,11 +5,8 @@ import ru.skypro.pets_home_bot.api_bot.enums.MessageMode;
 import ru.skypro.pets_home_bot.telegram_bot.logic.logic_com.ExecuteMessage;
 import ru.skypro.pets_home_bot.telegram_bot.logic.service.impl.SenderMessageServiceAbstract;
 import ru.skypro.pets_home_bot.telegram_bot.logic.utils.ParseUtil;
-
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+
 @Service
 public class SenderMessageServiceStart extends SenderMessageServiceAbstract {
     public SenderMessageServiceStart(ParseUtil parseUtil, List<ExecuteMessage> executeMessages) {

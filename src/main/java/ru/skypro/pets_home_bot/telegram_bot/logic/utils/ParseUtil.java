@@ -2,10 +2,13 @@ package ru.skypro.pets_home_bot.telegram_bot.logic.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.skypro.pets_home_bot.api_bot.model.OwnerId;
 
 @Component
+@Slf4j
 public class ParseUtil {
     private final String num = "num";
     private final String regex = "\\d+";
@@ -29,14 +32,25 @@ public class ParseUtil {
     }
 
     public int getIdLink(String link) {
-        return Integer.parseInt(link.split("_")[1]);
+        int result = 0;
+        try {
+            result = Integer.parseInt(link.split("_")[1]);
+        } catch (NumberFormatException e) {
+            log.error("Ошибка форматирования");
+        }
+        return result;
     }
 
     public int[] gePetUserIdAndPetId(String link) {
         String[] strings = link.split("_");
         int[] res = new int[2];
-        res[0] = Integer.parseInt(strings[1]);
-        res[1] = Integer.parseInt(strings[2]);
+        try {
+            res[0] = Integer.parseInt(strings[1]);
+            res[1] = Integer.parseInt(strings[2]);
+        } catch (NumberFormatException e) {
+            res = new int[2];
+            log.error("Ошибка форматирования");
+        }
         return res;
     }
 
