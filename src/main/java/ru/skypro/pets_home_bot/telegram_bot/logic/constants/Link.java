@@ -55,6 +55,25 @@ public class Link {
     public static final String CANSEL_REPORT_DIET = "/canselreportdiet";
     public static final String CANSEL_REPORT_CONDITION = "/canselreportcondition";
     public static final String CANSEL_REPORT_BEHAVIOR = "/canselreportbehavior";
+    public static final String REPORTS = "/reports";
+    public static final String ORDERS = "/orders";
+    public static final String SOLUTION = "/solution";
+    public static final String CANSEL_COMMUNICATION = "/canselcommunication";
+    public static final String CANSEL_USER_COMMUNICATION = "/canseluser";
+    public static final String ANSWER_PET_USER = "/answer";
+    public static final String OWNER_USER_ID_PET_ID_NUM1_NUM2 = "/owner_num_num";
+    public static final String YES_ADOPTION_USER_PET_NUM1_NUM2 = "/yesadoption_num_num";
+    public static final String NO_ADOPTION_USER_PET_NUM1_NUM2 = "/noadoption_num_num";
+    public static final String REPORT_ID_NUM = "/reportid_num";
+    public static final String VIEWED_REPORT_ID_NUM = "/viewed_num";
+    public static final String MESSAGE_USER_ID_NUM = "/messageuserid_num";
 
+    public static final String OWNERS_END = "/ownersend";
+    public static final String OWNERS_CUR = "/ownerscur";
 
+    public static final String OWNER_END_USER_PET_NUM_NUM = "/ownerend_num_num";
+    public static final String INCREASE_FOURTEEN_NUM_NUM = "/increasefourteen_num_num";
+    public static final String INCREASE_THIRTY_NUM_NUM = "/increasethirty_num_num";
+    public static final String AGREEMENT_NUM_NUM = "/agreement_num_num";
+    public static final String SEIZE_NUM_NUM = "/seize_num_num";
 }

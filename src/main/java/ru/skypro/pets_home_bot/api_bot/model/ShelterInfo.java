@@ -1,7 +1,10 @@
 package ru.skypro.pets_home_bot.api_bot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
+import java.util.Objects;
 
 @Entity
 @Data

@@ -2,18 +2,17 @@ package ru.skypro.pets_home_bot.telegram_bot.logic.service;
 
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
-import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Service;
 import ru.skypro.pets_home_bot.api_bot.enums.MessageMode;
 import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.model.Volunteer;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 import ru.skypro.pets_home_bot.api_bot.service.VolunteerService;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
 @Service
 public class ManagerMessageService {
     private Map<MessageMode, SenderMessageService> messageServiceMap;

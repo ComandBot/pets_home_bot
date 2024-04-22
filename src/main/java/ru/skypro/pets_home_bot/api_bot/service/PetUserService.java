@@ -2,6 +2,8 @@ package ru.skypro.pets_home_bot.api_bot.service;
 
 import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 
+import java.util.Optional;
+
 public interface PetUserService {
     /**
      * Регистрация нового усыновителя потенциального усыновителя
@@ -13,7 +15,6 @@ public interface PetUserService {
     /**
      * Убирает регистрацию усыновителя
      * @param idPetUser - id усыновителя
-     * @return - возвращает удаленног усыновителя или null
      */
     void deletePetUser(int idPetUser);
 
@@ -24,4 +25,11 @@ public interface PetUserService {
      * @return - возвращается
      */
     PetUser findByChatIdPetUser(long chatIdPetUser);
+
+    /**
+     * Получение опционала пользователя по его id
+     * @param id - id усыновителя
+     * @return - опционал пользователя
+     */
+    Optional<PetUser> findById(int id);
 }

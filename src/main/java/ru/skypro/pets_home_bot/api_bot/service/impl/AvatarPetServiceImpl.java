@@ -6,23 +6,22 @@ import ru.skypro.pets_home_bot.api_bot.model.AvatarPet;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
 import ru.skypro.pets_home_bot.api_bot.repository.AvatarPetRepository;
 import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
-import ru.skypro.pets_home_bot.api_bot.repository.PetUserRepository;
 import ru.skypro.pets_home_bot.api_bot.service.AvatarPetService;
-
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class AvatarPetServiceImpl implements AvatarPetService {
     private final AvatarPetRepository avatarPetRepository;
     private final PetRepository petRepository;
-    public AvatarPetServiceImpl(AvatarPetRepository avatarPetRepository, PetUserRepository petUserRepository, PetRepository petRepository) {
+    public AvatarPetServiceImpl(AvatarPetRepository avatarPetRepository, PetRepository petRepository) {
         this.avatarPetRepository = avatarPetRepository;
         this.petRepository = petRepository;
     }
 
     @Override
+    @Transactional
     public AvatarPet save(int petId, String petDescription, byte[] avatar) {
         Optional<Pet> petOptional = petRepository.findById(petId);
         if (petOptional.isEmpty()) {
@@ -37,6 +36,7 @@ public class AvatarPetServiceImpl implements AvatarPetService {
     }
 
     @Override
+    @Transactional
     public Optional<AvatarPet> findAvatarPetByPetId(int petId) {
         Optional<Pet> optionalPet = petRepository.findById(petId);
         if (optionalPet.isEmpty()) {
@@ -47,5 +47,21 @@ public class AvatarPetServiceImpl implements AvatarPetService {
             return Optional.empty();
         }
         return Optional.of(avatarPet);
+    }
+
+    @Override
+    @Transactional
+    public void deleteByPet(Pet pet) {
+        avatarPetRepository.deleteByPet(pet);
+    }
+
+    @Override
+    public AvatarPet add(AvatarPet avatarPet) {
+        return avatarPetRepository.save(avatarPet);
+    }
+
+    @Override
+    public List<AvatarPet> getAvatarsPets() {
+        return avatarPetRepository.findAll();
     }
 }

@@ -78,7 +78,7 @@ class PetServiceImplTest {
         when(petRepositoryMock.save(any(Pet.class))).thenReturn(expected);
 
         Pet result = out.addPet(expected);
-        out.deletePet(result.getId());
+        out.deleteById(result.getId());
         verify(petRepositoryMock, times(1)).deleteById(eq(1));
     }
 }

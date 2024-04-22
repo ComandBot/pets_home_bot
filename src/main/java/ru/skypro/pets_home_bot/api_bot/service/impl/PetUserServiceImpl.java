@@ -6,6 +6,8 @@ import ru.skypro.pets_home_bot.api_bot.model.PetUser;
 import ru.skypro.pets_home_bot.api_bot.repository.PetUserRepository;
 import ru.skypro.pets_home_bot.api_bot.service.PetUserService;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class PetUserServiceImpl implements PetUserService {
@@ -31,5 +33,10 @@ public class PetUserServiceImpl implements PetUserService {
     @Override
     public PetUser findByChatIdPetUser(long chatIdPetUser) {
         return petUserRepository.findByChatId(chatIdPetUser);
+    }
+
+    @Override
+    public Optional<PetUser> findById(int id) {
+        return petUserRepository.findById(id);
     }
 }

@@ -1,5 +1,6 @@
 package ru.skypro.pets_home_bot.api_bot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,6 +16,7 @@ public class Report {
     private int id;
 
     @Lob
+    @JsonIgnore
     private byte[] photo;
 
     @Column(columnDefinition = "TEXT")

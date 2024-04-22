@@ -5,7 +5,6 @@ import ru.skypro.pets_home_bot.api_bot.enums.PetsTypes;
 import ru.skypro.pets_home_bot.api_bot.model.Shelter;
 import ru.skypro.pets_home_bot.api_bot.repository.ShelterRepository;
 import ru.skypro.pets_home_bot.api_bot.service.ShelterService;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -30,5 +29,20 @@ public class ShelterServiceImpl implements ShelterService {
     @Override
     public Optional<Shelter> findByShelterId(int id) {
         return shelterRepository.findById(id);
+    }
+
+    @Override
+    public Shelter add(Shelter shelter) {
+        return shelterRepository.save(shelter);
+    }
+
+    @Override
+    public List<Shelter> findAll() {
+        return shelterRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(int id) {
+        shelterRepository.deleteById(id);
     }
 }

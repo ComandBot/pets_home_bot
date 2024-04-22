@@ -1,18 +1,13 @@
 package ru.skypro.pets_home_bot.api_bot.service.impl;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.skypro.pets_home_bot.api_bot.model.Pet;
 import ru.skypro.pets_home_bot.api_bot.repository.PetRepository;
 import ru.skypro.pets_home_bot.api_bot.service.PetService;
-
-import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class PetServiceImpl implements PetService {
 private final PetRepository petRepository;
 
@@ -31,8 +26,8 @@ private final PetRepository petRepository;
     }
 
     @Override
-    public void deletePet(Integer id) {
-        petRepository.deleteById(id);
+    public void deleteById(int petId) {
+        petRepository.deleteById(petId);
     }
 
     @Override
@@ -41,7 +36,7 @@ private final PetRepository petRepository;
     }
 
     @Override
-    public Collection<Pet> findByName(String name) {
+    public Pet findByName(String name) {
         return petRepository.findByName(name);
     }
 
